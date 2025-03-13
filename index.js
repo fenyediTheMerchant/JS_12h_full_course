@@ -1,37 +1,19 @@
-// .checked = property that determines the chacked state
-// of a HTML checkbox or radio button element
+// ternary operator = condition ? codeIfTrue : codeIfFalse
 
-// Storing elements in constants to work easier
-const myCheckbox = document.getElementById("myCheckbox");
-const visaBtn = document.getElementById("visaBtn");
-const masterCardBtn = document.getElementById("masterCardBtn");
-const payPalBtn = document.getElementById("payPalBtn");
-const mySubmit = document.getElementById("mySubmit");
-const subResult = document.getElementById("subResult");
-const paymentResult = document.getElementById("paymentResult");
+// let age = 21;
+// let message = age >= 18 ? "You're an adult" : "You're a minor"
+// console.log(message);
 
-mySubmit.onclick = function(){
-    if(myCheckbox.checked){
-        subResult.textContent = `You are Subscribed!`;
-    }
-    else{
-        subResult.textContent = `You are NOT Subscribed!`;
-    }
+// let time = 1;
+// let greeting = time < 12 ? "Good Morning!" : "Good Afternoon!";
+// console.log(greeting);
 
-    if(visaBtn.checked){
-        paymentResult.textContent = `You are paying with Visa`;
-    }
-    else if(masterCardBtn.checked){
-        paymentResult.textContent = `You are paying with MasterCard`;
+// let isStudent = false;
+// let message = isStudent ? "You are a student" : "You are not a student";
+// console.log(message);
 
-    }
-    else if(payPalBtn.checked){
-        paymentResult.textContent = `You are paying with PayPal`;
-
-    }
-    else {
-        paymentResult.textContent = `You must select a payment type!`;
-
-    }
-}
-
+let purhcaseAmount = 125;
+let discount = purhcaseAmount > 100 ? 10 : 0;
+console.log(
+    `Your total is $${purhcaseAmount *  (discount - 1) / 100}`
+);
