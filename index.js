@@ -1,29 +1,14 @@
-let students = 30;
+// How to accept user input
 
-// Reassign the variable
-students = students + 1;
-console.log(students);
+// 1. Easy way =  window prompt
+// 2. Professional way = HTML textbox
 
-students = students - 1;
-console.log(students);
+// let username;
+// username = window.prompt("What's your username?");
 
-students = students * 2;
-console.log(students);
+let username;
 
-students = students / 2;
-console.log(students);
-
-// To the power of 2..
-students = students ** 2;
-console.log(students);
-
-students = students % 2;
-console.log(students);
-
-// To not brake students...
-let extraStudents = students % 2;
-
-// Or use shorter forms
-
-students += 1;
-console.log(students);
+document.getElementById("mySubmit").onclick = function(){
+    username = document.getElementById("myText").value;
+    document.getElementById("myH1").textContent = `Hello ${username}`;
+}
