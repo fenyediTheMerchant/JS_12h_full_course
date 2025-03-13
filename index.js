@@ -1,14 +1,13 @@
-// How to accept user input
+// type conversion = change the datatype of a value to another (strings, numbers, booleans)
 
-// 1. Easy way =  window prompt
-// 2. Professional way = HTML textbox
+let x = "";
+let y = "";
+let z = "";
 
-// let username;
-// username = window.prompt("What's your username?");
+x = Number(x); // NaN and number
+y = String(y); //pizza cuz its string
+z = Boolean(z); //True because z is not empty or false if empty
 
-let username;
-
-document.getElementById("mySubmit").onclick = function(){
-    username = document.getElementById("myText").value;
-    document.getElementById("myH1").textContent = `Hello ${username}`;
-}
+console.log(x, typeof x); 
+console.log(y, typeof y);
+console.log(z, typeof x);
