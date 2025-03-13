@@ -1,13 +1,16 @@
-// type conversion = change the datatype of a value to another (strings, numbers, booleans)
+// const = a variable that can't be changed
 
-let x = "";
-let y = "";
-let z = "";
+const PI = 3.14159;
+let radius;
+let circumference;
 
-x = Number(x); // NaN and number
-y = String(y); //pizza cuz its string
-z = Boolean(z); //True because z is not empty or false if empty
+// PI = 23 INVALID
 
-console.log(x, typeof x); 
-console.log(y, typeof y);
-console.log(z, typeof x);
+// radius = window.prompt("Enter the radius of a circle:");
+
+document.getElementById("mySubmit").onclick = function(){
+    radius = Number(document.getElementById("myText").value);
+    circumference = 2 * PI * radius;
+    document.getElementById("myH3").textContent = circumference + "cm";
+    console.log(circumference);
+}
