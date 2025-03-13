@@ -1,33 +1,35 @@
-// Math = built-in object that provides a collection of properties and methods
+// Random Number Generator
 
-// console.log(Math.PI);
-// console.log(Math.E);
+// const min = 50;
+// const max = 100;
 
-let x = 4;
-let y = 2;
-let z = 1;
+// Random number from 1 to 100
+// let randomNum = Math.floor(Math.random() * 100) + 1;
 
-// Round
-// z = Math.round(x);
-// Round down
-// z = Math.floor(x);
-// Round up
-// z = Math.ceil(x);
-// Truncate
-// z = Math.trunc(x);
-// Power
-// z = Math.pow(x , y);
-// v/2
-// z = Math.sqrt(x);
-// Logarithm
-// z = Math.log(x);
-// etc... like sin cos tan 
-// Absolute
-// z = Math.abs(x);
-// Positive or Negative?
-// z = Math.sign(x);
+// Random number from min to max
+// We substract the min from the max to avoid
+// numbers like 120 because if random is 70 and we add 50 as min
+// the result is 120
+// let randomNum = Math.floor(Math.random() * (max - min)) + min;
 
-let max = Math.max(x, y, z);
-let min = Math.min(x, y, z);
+// Storing the html elements in const variables, skipping redundant writing
+const myButton = document.getElementById("myButton");
+const label1 = document.getElementById("myLabel1");
+const label2 = document.getElementById("myLabel2");
+const label3 = document.getElementById("myLabel3");
+const min = 1;
+const max = 6;
+let randomNum1;
+let randomNum2;
+let randomNum3;
 
-console.log(max);
+myButton.onclick = function(){
+    randomNum1 = Math.floor(Math.random() * max) + min;
+    randomNum2 = Math.floor(Math.random() * max) + min;
+    randomNum3 = Math.floor(Math.random() * max) + min;
+    label1.textContent = randomNum1;
+    label2.textContent = randomNum2;
+    label3.textContent = randomNum3;
+    console.log(randomNum1);
+}
+
