@@ -1,16 +1,30 @@
-// const = a variable that can't be changed
+// COUNTER PROGRAM
 
-const PI = 3.14159;
-let radius;
-let circumference;
+// Button html elements assigned to a JS const variable
+const decreaseBtn = document.getElementById("decreaseBtn");
+const resetBtn = document.getElementById("resetBtn");
+const increaseBtn = document.getElementById("increaseBtn");
+const countLabel = document.getElementById("countLabel");
 
-// PI = 23 INVALID
+let count = 0;
 
-// radius = window.prompt("Enter the radius of a circle:");
+// Functions to handle logic
 
-document.getElementById("mySubmit").onclick = function(){
-    radius = Number(document.getElementById("myText").value);
-    circumference = 2 * PI * radius;
-    document.getElementById("myH3").textContent = circumference + "cm";
-    console.log(circumference);
+increaseBtn.onclick = function(){
+    count++;
+    countLabel.textContent = count;
 }
+
+resetBtn.onclick = function(){
+    count = 0;
+    countLabel.textContent = count;
+}
+
+decreaseBtn.onclick = function(){
+    count--;
+    countLabel.textContent = count;
+}
+
+console.log(decreaseBtn);
+console.log(countLabel);
+console.log(countLabel.textContent);
