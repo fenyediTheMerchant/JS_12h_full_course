@@ -1,30 +1,33 @@
-// COUNTER PROGRAM
+// Math = built-in object that provides a collection of properties and methods
 
-// Button html elements assigned to a JS const variable
-const decreaseBtn = document.getElementById("decreaseBtn");
-const resetBtn = document.getElementById("resetBtn");
-const increaseBtn = document.getElementById("increaseBtn");
-const countLabel = document.getElementById("countLabel");
+// console.log(Math.PI);
+// console.log(Math.E);
 
-let count = 0;
+let x = 4;
+let y = 2;
+let z = 1;
 
-// Functions to handle logic
+// Round
+// z = Math.round(x);
+// Round down
+// z = Math.floor(x);
+// Round up
+// z = Math.ceil(x);
+// Truncate
+// z = Math.trunc(x);
+// Power
+// z = Math.pow(x , y);
+// v/2
+// z = Math.sqrt(x);
+// Logarithm
+// z = Math.log(x);
+// etc... like sin cos tan 
+// Absolute
+// z = Math.abs(x);
+// Positive or Negative?
+// z = Math.sign(x);
 
-increaseBtn.onclick = function(){
-    count++;
-    countLabel.textContent = count;
-}
+let max = Math.max(x, y, z);
+let min = Math.min(x, y, z);
 
-resetBtn.onclick = function(){
-    count = 0;
-    countLabel.textContent = count;
-}
-
-decreaseBtn.onclick = function(){
-    count--;
-    countLabel.textContent = count;
-}
-
-console.log(decreaseBtn);
-console.log(countLabel);
-console.log(countLabel.textContent);
+console.log(max);
