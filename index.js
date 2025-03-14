@@ -1,39 +1,68 @@
-// .reduce() = reduces the element of an array
-// to a single value
+// function DECLARATION = define a reusable block of code
+// that performs a specific task
 
-const prices = [5, 30, 10, 25, 15, 20];
+// function hello(){
+//     console.log("Hello");
+// }
+// hello();
 
-const total = prices.reduce(sum);
+// function EXPRESSIONS = a way to define functions as 
+// values or variables
 
-console.log(`${total.toFixed(2)} RON`);
+// 1. Callbacks in async operations
+// 2. Higher-Order Functions
+// 3. Closures
+// 4. Event listeners
 
-function sum(accumulator, element){
-    return accumulator + element;
-}
-
-// function sum(previous, next){
-//     return previous + next;
+// Variable ex.
+// const hello = function(){
+//     console.log("Hello");
 // }
 
-// previous 0 next 5
-// previous 5 next 30
-// previous 35 next 10
-// previous 45 next 25...
+// hello();
 
-const grades = [75, 50, 90 , 80, 65, 95];
+// Value ex.
+// setTimeout(function(){
+//     console.log("Hello");
+// },3000);
 
-const maximum = grades.reduce(getMax);
+// Practical ex. before vs after.
+// Function declaration
+const numbers = [1, 2, 3, 4, 5, 6];
+const squares = numbers.map(square);
 
-console.log(maximum);
+console.log(squares);
 
-function getMax(accumulator, element){
-    return Math.max(accumulator, element);
+function square(element){
+    return Math.pow(element, 2);
 }
+// Function expression
+const squares2 = numbers.map(function(element){
+    return Math.pow(element, 2);
+});
 
-const minimum = grades.reduce(getMin);
+console.log(squares);
+// Same with cubed
+const cubes = numbers.map(function(element){
+    return Math.pow(element, 3);
+})
 
-console.log(minimum);
+console.log(cubes);
+// Same with filter even
+const evenNums = numbers.filter(function(element){
+    return element % 2 === 0;
+})
 
-function getMin(accumulator, element){
-    return Math.min(accumulator, element);
-}
+console.log(evenNums);
+// Same with filter odd
+const oddNums = numbers.filter(function(element){
+    return element % 2 !== 0;
+})
+
+console.log(oddNums);
+// Same with reduce sum
+const total = numbers.reduce(function(accumulator, element){
+    return accumulator += element;
+})
+
+console.log(total);
