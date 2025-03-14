@@ -1,38 +1,63 @@
-// spread operator = ...allows an iterable such as an
-// array or string to be expanded into seperate elements
-// ("unpacks the elements") or to combine multiple arrays
+// rest parameters = (...rest)
+// allow a function work with a variable number of arguments
+// by building them into an array
 
+// spread = expands an array into seperate elements
+// rest = bundles seperate elements into an array
 
-// Number Example
-let numbers = [1, 2, 3, 4, 5];
-// let maximum = Math.max(1, 2, 3, 4, 5); VALID
-// let maximum = Math.max(numbers); NOT VALID
-let maximum = Math.max(...numbers); //VALID
-let minimum = Math.min(...numbers);
+// enables functions to accept multiple arguments in a flexible way
 
+// bundes values into an array and writes it out
+function openFridge(...foods){
+    console.log(foods);
+}
 
-console.log(numbers);
-console.log(maximum);
-console.log(minimum);
+// bundles values into an array and returns that array
+function getFood(...foods){
+    return foods;
+}
 
-// Username Example
-let username = "Fenyedi Levente";
-// let letters = [username]; result is = Fenyedi Levente
-// let letters = [...username]; //result is F,e,n...
-let letters = [...username].join("-");
+const food1 = "pizza";
+const food2 = "hamburger";
+const food3 = "hotdog";
+const food4 = "sushi";
+const food5 = "ramen";
 
-console.log(letters);
+openFridge(food1, food2, food3, food4, food5);
 
-// Fruit Example
-let fruits = ["apple", "orange", "banana"];
-// console.log(fruits);
-// console.log(typeof fruits);
-
-let vegetables = ["carrots","celery","potatoes"];
-
-// let newFruits = [...fruits]; shallow copy
-// console.log(newFruits);
-// console.log(typeof newFruits);
-let foods = [...fruits, ...vegetables, "eggs", "milk"]; //
+const foods = getFood(food1, food2, food3, food4, food5);
 
 console.log(foods);
+
+//SUM Example
+
+// creates an array from the passed arguments
+function sum(...numbers){
+    console.log(numbers)
+    let result = 0;
+    for(let number of numbers){
+        result += number;
+    }
+    return result;
+}
+
+function getAverage(...numbers){
+    console.log(numbers)
+    let result = 0;
+    for(let number of numbers){
+        result += number;
+    }
+    return result / numbers.length;
+}
+
+console.log(`Your total is ${sum(1,2,3,4,5,6,7,8,9,10,20)}`);
+console.log(`Your total is ${getAverage(1,2,3,4,5,6,7,8,9,10,20)}`);
+
+// Combining strings
+
+function combineStrings(...strings){
+    return strings.join(" ");
+}
+
+const fullName = combineStrings("Mr.", "Spongebob", "Squarepants", "III");
+console.log(fullName);
