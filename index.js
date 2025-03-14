@@ -1,49 +1,53 @@
-// .map() = accepts a callback and applies that function
-// to each element of an array, then return a new array
+// .filter() = creates a new array by filtering
+//  out elemetns
 
-// forEach = modifies original array
-// map = creates a new array
+let numbers = [1, 2, 3, 4, 5, 6, 7];
+let evenNums = numbers.filter(isEven);
+let oddNums = numbers.filter(isOdd);
 
-const numbers = [1, 2, 3, 4, 5];
+console.log(evenNums);
+console.log(oddNums);
 
-const squares = numbers.map(square);
-const cubes = numbers.map(cube);
-
-console.log(numbers);
-console.log(squares);
-console.log(cubes);
-
-function square(element){
-    return Math.pow(element, 2);
+function isEven(element){
+    return element % 2 === 0 ? true : false;
 }
 
-function cube(element){
-    return Math.pow(element, 3);
+function isOdd(element){
+    return element % 2 !== 0 ? true : false;
 }
 
-const students = ["Spongebob", "Patrick", "Squidward", "Sandy"];
-const studentsUpper = students.map(upperCase);
-const studentLower = students.map(lowerCase);
+// Another ex
 
-console.log(studentsUpper);
-console.log(studentLower);
+const ages = [16, 17, 18 , 18, 19 , 20, 60];
+const adults = ages.filter(isAdult);
+const childrens = ages.filter(isChild);
 
-function upperCase(element){
-    return element.toUpperCase();
+console.log(adults);
+console.log(childrens);
+
+function isAdult(element){
+    return element >= 18;
 }
 
-function lowerCase(element){
-    return element.toLowerCase();
+function isChild(element){
+    return element < 18;
 }
 
-// More practical ex.
+// Another ex
 
-const dates = ["2024-1-10", "2025-2-20", "2026-3-30"];
-const formattedDates = dates.map(formatDates);
+const words = ["apple", "orange", "banana", "kiwi",
+    "pomergrenate", "coconut"
+];
+const shortWords = words.filter(getShortWords);
+const longWords = words.filter(getLongWords);
 
-console.log(formattedDates);
+console.log(shortWords);
+console.log(longWords);
 
-function formatDates(element){
-    const parts = element.split("-");
-    return `${parts[1]}/${parts[2]}/${parts[0]}`;
+function getShortWords(element){
+    return element.length <= 6;
+}
+
+function getLongWords(element){
+    return element.length > 6;
 }
