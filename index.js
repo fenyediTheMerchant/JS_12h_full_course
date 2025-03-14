@@ -1,49 +1,49 @@
-// forEach() = method used to irate over the elements
-// of an array and apply a specified function (callback)
-// to each element
+// .map() = accepts a callback and applies that function
+// to each element of an array, then return a new array
 
-// array.forEach(callback);
+// forEach = modifies original array
+// map = creates a new array
 
-// let numbers = [1,2,3];
+const numbers = [1, 2, 3, 4, 5];
 
-// numbers.forEach(double);
-// numbers.forEach(triple);
-// numbers.forEach(square);
-// numbers.forEach(display);
+const squares = numbers.map(square);
+const cubes = numbers.map(cube);
 
-// function double(element, index, array){
-//     array[index] = element * 2;
-// }
+console.log(numbers);
+console.log(squares);
+console.log(cubes);
 
-// function triple(element, index, array){
-//     array[index] = element * 3;
-// }
-
-// function square(element, index, array){
-//     array[index] = element ** 2;
-// }
-
-// function display(element){
-//     console.log(element);
-// }
-
-// Practical ex
-let fruits = ["apple", "orange", "banana", "coconut"];
-
-fruits.forEach(capitalize);
-fruits.forEach(display);
-
-function upperCase(element, index, array){
-    array[index] = element.toUpperCase();
+function square(element){
+    return Math.pow(element, 2);
 }
 
-// CHALLENGE!!
-function capitalize(element, index, array){
-    let firstCharUpper = element.charAt(0).toUpperCase();
-    let restChars = element.slice(1);
-    array[index] = firstCharUpper + restChars;
+function cube(element){
+    return Math.pow(element, 3);
 }
 
-function display(element){
-    console.log(element);
+const students = ["Spongebob", "Patrick", "Squidward", "Sandy"];
+const studentsUpper = students.map(upperCase);
+const studentLower = students.map(lowerCase);
+
+console.log(studentsUpper);
+console.log(studentLower);
+
+function upperCase(element){
+    return element.toUpperCase();
+}
+
+function lowerCase(element){
+    return element.toLowerCase();
+}
+
+// More practical ex.
+
+const dates = ["2024-1-10", "2025-2-20", "2026-3-30"];
+const formattedDates = dates.map(formatDates);
+
+console.log(formattedDates);
+
+function formatDates(element){
+    const parts = element.split("-");
+    return `${parts[1]}/${parts[2]}/${parts[0]}`;
 }
