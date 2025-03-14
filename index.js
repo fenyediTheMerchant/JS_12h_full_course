@@ -1,49 +1,35 @@
-// Switch = Efficient replacement to many if statements
+// string methods = allow you to manipulate and work with text (strings)
 
-// let day = 5;
-let testScore = 80;
-let letterGrade;
+let userName = "Levix501  ";
 
-switch(true){
-    case testScore >=  90:
-            letterGrade = "A";
-            break;
-    case testScore >=  80:
-        letterGrade = "B";
-        break;
-    case testScore >=  70:
-        letterGrade = "C";
-        break;
-    // etc...
-    default:
-        letterGrade = "F";
+console.log(userName.charAt(3));
+console.log(userName.indexOf("e"));
+console.log(userName.lastIndexOf("e"));
+console.log(userName.length);
+console.log(userName);
+console.log(userName.trim());
+console.log(userName.toUpperCase());
+console.log(userName.toLowerCase());
+console.log(userName.startsWith(" "));
+console.log(userName.endsWith(" "));
+console.log(userName.includes("x"));
+
+if(userName.startsWith(" ")){
+    console.log("Your username can't start with an empty Space!")
+}
+else {
+    console.log(userName);
 }
 
-console.log(letterGrade);
+// Phone number ex.
 
-// switch (day){
-//     case 1:
-//         console.log("Hetfo");
-//         break;
-//     case 2:
-//         console.log("Kedd");
-//         break;
-//     case 3:
-//         console.log("Szerda");
-//         break;
-//     case 4:
-//         console.log("Csutortok");
-//         break;
-//     case 5:
-//         console.log("Pentek");
-//         break;
-//     case 6:
-//         console.log("Szombat");
-//         break;
-//     case 7:
-//         console.log("Vasarnap");
-//         break;
-//     default:
-//         console.log("Ez nem egy nap...");
-//         break;
-// }
+let phoneNumber = "123-456-7890";
+
+phoneNumber = phoneNumber.replaceAll("-", "");
+
+console.log(phoneNumber);
+
+phoneNumber = phoneNumber.padStart(15, "--");
+phoneNumber = phoneNumber.padEnd(20, "--");
+
+console.log(phoneNumber);
