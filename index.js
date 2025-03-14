@@ -1,32 +1,8 @@
-//  while loop =  repeat some code WHILE some condition is true
+// for loop = repeat some code a Limited amount of times
 
-// let username = "";
-
-// while (username === "" || username === null){
-//     username = window.prompt(`Enter your name:`);
-// }
-
-// let username;
-
-// do {
-//     username = window.prompt(`Enter your name:`);
-// } while (username === "" || username === null);
-
-
-// console.log(`Hello ${username}`);
-
-let loggedIn = false;
-let username;
-let password;
-
-while(!loggedIn){
-    username = window.prompt(`Enter your username:`);
-    password = window.prompt(`Enter your password:`);
-    if(username === "myUsr" && password === "myPwd"){
-        loggedIn = true;
-        console.log("You are logged in!");
+for(let i = 1; i <= 20; i++){
+    if(i == 13){
+        break;
     }
-    else {
-        console.log("Invalid credentials! Please try again");
-    }
+    console.log(i);
 }
