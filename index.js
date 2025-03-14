@@ -1,19 +1,13 @@
-// Logical operators = and or not...
+//  = assignment operator
+// == comparison operator (if values are equal?)
+// === strict equality (value and datatype is equal?)
+// adding ! is negating
 
-// const temp = -200;
+const PI = 3.14;
 
-// if (temp <= 0 || temp > 30){
-//     console.log("The weather is BAD");
-// }
-// else{
-//     console.log("The weather is GOOD");
-// }
-
-const isSunny = false;
-
-if(!isSunny){
-    console.log("It is CLOUDY");
+if(PI !== "3.14"){
+    console.log("That is NOT PI");
 }
 else{
-    console.log("It is SUNNY");
+    console.log("That is PI");
 }
