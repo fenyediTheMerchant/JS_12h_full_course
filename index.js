@@ -1,47 +1,64 @@
-// Random Password Generator
+// callback = a function that is passed as an argument
+// to another function
 
-function generatePassword(length, includeLowerCase, includeUpperCase, includeNumbers, includeSymbols){
+// used to handle asynchronous operations:
+// 1. Reading a file
+// 1.ex: After you done reading the file, print it out
+// 2. Network requests
+// 3. Interacting with databases
 
-    const lowercaseChars = "abcdefghijklmnopqrtsuvwxyz"
-    const uppercaseChars = lowercaseChars.toUpperCase();
-    const numberChars = "0123456789"
-    const symbolChars = "~!@#$%^&*()_+=-][;'\/.,<>?:"
+// Ex. "Hey bro, when you are done, call this next.."
 
-    let allowedChars = "";
-    let password = "";
+// Here goodbye comes first!
+// hello();
+// goodbye();
 
-    allowedChars += includeLowerCase ? lowercaseChars : "";
-    allowedChars += includeUpperCase ? uppercaseChars : "";
-    allowedChars += includeNumbers ? numberChars : "";
-    allowedChars += includeSymbols ? symbolChars : "";
+// function hello(){
+//     setTimeout(function(){
+//         console.log("Hello");
+//     }, 3000);
+// }
 
-    console.log(allowedChars);
+// function goodbye(){
+//     console.log("Goodbye");
+// }
 
-    if(length <= 0){
-        return `Password length must be at least 1!`;
-    }
-    if(allowedChars.length === 0){
-        return `At least one set of characters needs to be selected!`
-    }
+// Here hello comes first!
+//  dont use goodbye() cuz it is instant
+// hello(wait);
 
-    for(let i = 0; i < length; i++){
-        const randomIndex = Math.floor(Math.random() * allowedChars.length);
-        password += allowedChars[randomIndex];
-    }
+// function hello(callback){
+//     console.log("Hello");
+//     callback();
+// }
 
-    return password;
+// function wait(){
+//     console.log("Wait!");
+// }
+
+// function leave(){
+//     console.log("Leave!");
+// }
+
+// function goodbye(){
+//     console.log("Goodbye");
+// }
+
+sum(displayPage, 5, 10);
+
+function sum(callback, x, y){
+    let result = x + y;
+    callback(result);
 }
 
-const passwordLength = 10;
-const includeLowerCase = true;
-const includeUpperCase = true;
-const includeNumbers = true;
-const includeSymbols = true;
+function displayConsole(result){
+    console.log(result);
+}
 
-const password = generatePassword(passwordLength,
-                                 includeLowerCase, 
-                                 includeUpperCase, 
-                                 includeNumbers, 
-                                 includeSymbols);
+function displayConsoleWithText(result){
+    console.log(`Your result is: ${result}`);
+}
 
-console.log(`Generated password: ${password}`);
+function displayPage(result){
+    document.getElementById("myH1").textContent = result;
+}
