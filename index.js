@@ -1,68 +1,71 @@
-// function DECLARATION = define a reusable block of code
-// that performs a specific task
+// arrow functions = a concise (rovid, egyertelmu) way
+// to write function expression
+// Good for simple functions that you use only once
+// (parameters) => some code
 
-// function hello(){
-//     console.log("Hello");
-// }
-// hello();
-
-// function EXPRESSIONS = a way to define functions as 
-// values or variables
-
-// 1. Callbacks in async operations
-// 2. Higher-Order Functions
-// 3. Closures
-// 4. Event listeners
-
-// Variable ex.
-// const hello = function(){
-//     console.log("Hello");
-// }
-
-// hello();
-
-// Value ex.
-// setTimeout(function(){
-//     console.log("Hello");
-// },3000);
-
-// Practical ex. before vs after.
-// Function declaration
-const numbers = [1, 2, 3, 4, 5, 6];
-const squares = numbers.map(square);
-
-console.log(squares);
-
-function square(element){
-    return Math.pow(element, 2);
+// V1. Old fashioned - function Declarations
+function hello1(){
+    console.log("Hello1");
 }
-// Function expression
-const squares2 = numbers.map(function(element){
-    return Math.pow(element, 2);
-});
+hello1();
 
+// V2. Last method - function expressions
+const hello2 = function(){
+    console.log("Hello2");
+}
+hello2();
+
+// V3. Hottest - arrow functions
+const hello3 = () => console.log("Hello3");
+hello3()
+
+// V4. Hottest - arrow functions with parameters
+const hello4 = (name) => console.log(`Hello: ${name}`);
+hello4("Levi")
+
+// V5. Hottest - arrow functions with parameters
+// and with multiple lines
+const hello5 = (name, age) => {
+    console.log(`Hello: ${name}`)
+    console.log(`You are ${age} years old.`)
+};
+hello5("Levi", 25)
+
+// Set Timeout ex. with function decl.
+setTimeout(hello6, 3000);
+
+function hello6(){
+    console.log("Hello6");
+}
+
+// Set Timeout ex. with function expr.
+setTimeout(function(){
+    console.log("Hello7");
+}, 3000);
+
+// Set Timeout ex. with arrow funct.
+setTimeout(() => console.log("Hello8"), 3000);
+
+
+// Arrow functions with map
+const numbers = [1, 2, 3, 4, 5, 6];
+const squares = numbers.map((element) => Math.pow(element, 2));
+const cubes = numbers.map((element) => Math.pow(element, 3));
 console.log(squares);
-// Same with cubed
-const cubes = numbers.map(function(element){
-    return Math.pow(element, 3);
-})
-
 console.log(cubes);
-// Same with filter even
-const evenNums = numbers.filter(function(element){
-    return element % 2 === 0;
-})
 
+// Arrow functions with filter
+const evenNums = numbers.filter(
+    (element) => element % 2 === 0 ?  true : false
+);
 console.log(evenNums);
-// Same with filter odd
-const oddNums = numbers.filter(function(element){
-    return element % 2 !== 0;
-})
-
+const oddNums = numbers.filter(
+    (element) => element % 2 !== 0 ? true : false
+);
 console.log(oddNums);
-// Same with reduce sum
-const total = numbers.reduce(function(accumulator, element){
-    return accumulator += element;
-})
 
+// Arrow functions with reduce
+const total = numbers.reduce(
+    (accumulator, element) => accumulator += element
+);
 console.log(total);
