@@ -1,64 +1,49 @@
-// callback = a function that is passed as an argument
-// to another function
+// forEach() = method used to irate over the elements
+// of an array and apply a specified function (callback)
+// to each element
 
-// used to handle asynchronous operations:
-// 1. Reading a file
-// 1.ex: After you done reading the file, print it out
-// 2. Network requests
-// 3. Interacting with databases
+// array.forEach(callback);
 
-// Ex. "Hey bro, when you are done, call this next.."
+// let numbers = [1,2,3];
 
-// Here goodbye comes first!
-// hello();
-// goodbye();
+// numbers.forEach(double);
+// numbers.forEach(triple);
+// numbers.forEach(square);
+// numbers.forEach(display);
 
-// function hello(){
-//     setTimeout(function(){
-//         console.log("Hello");
-//     }, 3000);
+// function double(element, index, array){
+//     array[index] = element * 2;
 // }
 
-// function goodbye(){
-//     console.log("Goodbye");
+// function triple(element, index, array){
+//     array[index] = element * 3;
 // }
 
-// Here hello comes first!
-//  dont use goodbye() cuz it is instant
-// hello(wait);
-
-// function hello(callback){
-//     console.log("Hello");
-//     callback();
+// function square(element, index, array){
+//     array[index] = element ** 2;
 // }
 
-// function wait(){
-//     console.log("Wait!");
+// function display(element){
+//     console.log(element);
 // }
 
-// function leave(){
-//     console.log("Leave!");
-// }
+// Practical ex
+let fruits = ["apple", "orange", "banana", "coconut"];
 
-// function goodbye(){
-//     console.log("Goodbye");
-// }
+fruits.forEach(capitalize);
+fruits.forEach(display);
 
-sum(displayPage, 5, 10);
-
-function sum(callback, x, y){
-    let result = x + y;
-    callback(result);
+function upperCase(element, index, array){
+    array[index] = element.toUpperCase();
 }
 
-function displayConsole(result){
-    console.log(result);
+// CHALLENGE!!
+function capitalize(element, index, array){
+    let firstCharUpper = element.charAt(0).toUpperCase();
+    let restChars = element.slice(1);
+    array[index] = firstCharUpper + restChars;
 }
 
-function displayConsoleWithText(result){
-    console.log(`Your result is: ${result}`);
-}
-
-function displayPage(result){
-    document.getElementById("myH1").textContent = result;
+function display(element){
+    console.log(element);
 }
