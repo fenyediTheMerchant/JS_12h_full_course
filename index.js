@@ -1,19 +1,49 @@
-// ternary operator = condition ? codeIfTrue : codeIfFalse
+// Switch = Efficient replacement to many if statements
 
-// let age = 21;
-// let message = age >= 18 ? "You're an adult" : "You're a minor"
-// console.log(message);
+// let day = 5;
+let testScore = 80;
+let letterGrade;
 
-// let time = 1;
-// let greeting = time < 12 ? "Good Morning!" : "Good Afternoon!";
-// console.log(greeting);
+switch(true){
+    case testScore >=  90:
+            letterGrade = "A";
+            break;
+    case testScore >=  80:
+        letterGrade = "B";
+        break;
+    case testScore >=  70:
+        letterGrade = "C";
+        break;
+    // etc...
+    default:
+        letterGrade = "F";
+}
 
-// let isStudent = false;
-// let message = isStudent ? "You are a student" : "You are not a student";
-// console.log(message);
+console.log(letterGrade);
 
-let purhcaseAmount = 125;
-let discount = purhcaseAmount > 100 ? 10 : 0;
-console.log(
-    `Your total is $${purhcaseAmount *  (discount - 1) / 100}`
-);
+// switch (day){
+//     case 1:
+//         console.log("Hetfo");
+//         break;
+//     case 2:
+//         console.log("Kedd");
+//         break;
+//     case 3:
+//         console.log("Szerda");
+//         break;
+//     case 4:
+//         console.log("Csutortok");
+//         break;
+//     case 5:
+//         console.log("Pentek");
+//         break;
+//     case 6:
+//         console.log("Szombat");
+//         break;
+//     case 7:
+//         console.log("Vasarnap");
+//         break;
+//     default:
+//         console.log("Ez nem egy nap...");
+//         break;
+// }
