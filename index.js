@@ -1,37 +1,38 @@
-// array = a variable like a structure that can hold more
-//  than 1 value
+// spread operator = ...allows an iterable such as an
+// array or string to be expanded into seperate elements
+// ("unpacks the elements") or to combine multiple arrays
 
-//let fruit = "apple"; // fruit variable is of value "apple"
-let fruits = ["apple","orange", "banana"];
 
-// fruits[3] = "coconut";
-// fruits.push("mango");
-// fruits.pop();
-fruits.unshift("mango");
-// fruits.shift();
+// Number Example
+let numbers = [1, 2, 3, 4, 5];
+// let maximum = Math.max(1, 2, 3, 4, 5); VALID
+// let maximum = Math.max(numbers); NOT VALID
+let maximum = Math.max(...numbers); //VALID
+let minimum = Math.min(...numbers);
 
-console.log(fruits[0]);
-console.log(fruits[1]);
-console.log(fruits[2]);
-console.log(fruits[3]);
-console.log(fruits);
 
-let numOfFruits = fruits.length;
-let index = fruits.indexOf("apple");
+console.log(numbers);
+console.log(maximum);
+console.log(minimum);
 
-console.log(numOfFruits)
-console.log(index)
+// Username Example
+let username = "Fenyedi Levente";
+// let letters = [username]; result is = Fenyedi Levente
+// let letters = [...username]; //result is F,e,n...
+let letters = [...username].join("-");
 
-// for(let i = 0; i < fruits.length; i++){
-//     console.log(fruits[i]);
-// }
+console.log(letters);
 
-// for(let i = fruits.length - 1; i >= 0; i--){
-//     console.log(fruits[i]);
-// }
+// Fruit Example
+let fruits = ["apple", "orange", "banana"];
+// console.log(fruits);
+// console.log(typeof fruits);
 
-fruits.sort().reverse();
+let vegetables = ["carrots","celery","potatoes"];
 
-for(let fruit of fruits){
-    console.log(fruit);
-}
+// let newFruits = [...fruits]; shallow copy
+// console.log(newFruits);
+// console.log(typeof newFruits);
+let foods = [...fruits, ...vegetables, "eggs", "milk"]; //
+
+console.log(foods);
