@@ -1,24 +1,19 @@
-// Method Chaining = 
-// Calling one method after another in one -
-// continuous line of code.
+// Logical operators = and or not...
 
-let username = window.prompt("Enter your username:");
+// const temp = -200;
 
-// ------ No method chaining ------
+// if (temp <= 0 || temp > 30){
+//     console.log("The weather is BAD");
+// }
+// else{
+//     console.log("The weather is GOOD");
+// }
 
-// username = username.trim();
-// let letter = username.charAt(0);
-// letter = letter.toUpperCase();
+const isSunny = false;
 
-// let extraChars = username.slice(1);
-// extraChars = extraChars.toLowerCase();
-// username = letter + extraChars;
-
-// ------ WITH method chaining ------
-
-username = username.trim().charAt(0).toUpperCase() +
-            username.trim().slice(1).toLowerCase();
-
-console.log(username);
-
-// Super coool!!
+if(!isSunny){
+    console.log("It is CLOUDY");
+}
+else{
+    console.log("It is SUNNY");
+}
