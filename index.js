@@ -1,35 +1,26 @@
-// string methods = allow you to manipulate and work with text (strings)
+// String Slicing = creating a substring
+// from a portion of a nother string
+// string.slice(start,end)
 
-let userName = "Levix501  ";
+// const fullName = "Fenyedinte Leventishen";
 
-console.log(userName.charAt(3));
-console.log(userName.indexOf("e"));
-console.log(userName.lastIndexOf("e"));
-console.log(userName.length);
+// let firstName = fullName.slice(0,fullName.indexOf(" "));
+// let lastName = fullName.slice(fullName.indexOf(" ") + 1);
+
+// let firstChar = fullName.slice(0, 1);
+// let lastChar = fullName.slice(-1);
+
+// console.log(firstName);
+// console.log(lastName);
+// console.log(firstChar);
+// console.log(lastChar);
+
+// Super Cool Email Excercise
+
+const email = "levi@soft4biz.ro";
+
+let userName = email.slice(0,email.indexOf("@"));
+let domain = email.slice(email.indexOf("@") + 1);
+
 console.log(userName);
-console.log(userName.trim());
-console.log(userName.toUpperCase());
-console.log(userName.toLowerCase());
-console.log(userName.startsWith(" "));
-console.log(userName.endsWith(" "));
-console.log(userName.includes("x"));
-
-if(userName.startsWith(" ")){
-    console.log("Your username can't start with an empty Space!")
-}
-else {
-    console.log(userName);
-}
-
-// Phone number ex.
-
-let phoneNumber = "123-456-7890";
-
-phoneNumber = phoneNumber.replaceAll("-", "");
-
-console.log(phoneNumber);
-
-phoneNumber = phoneNumber.padStart(15, "--");
-phoneNumber = phoneNumber.padEnd(20, "--");
-
-console.log(phoneNumber);
+console.log(domain);
