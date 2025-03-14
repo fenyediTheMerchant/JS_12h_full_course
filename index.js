@@ -1,24 +1,47 @@
-// DICE ROLER PROGRAM
+// Random Password Generator
 
+function generatePassword(length, includeLowerCase, includeUpperCase, includeNumbers, includeSymbols){
 
-function rollDice(){
+    const lowercaseChars = "abcdefghijklmnopqrtsuvwxyz"
+    const uppercaseChars = lowercaseChars.toUpperCase();
+    const numberChars = "0123456789"
+    const symbolChars = "~!@#$%^&*()_+=-][;'\/.,<>?:"
 
-    const numOfDice = document.getElementById("numOfDice").value;
-    const diceResult = document.getElementById("diceResult");
-    const diceImages = document.getElementById("diceImages");
-    const values = [];
-    const images = [];
+    let allowedChars = "";
+    let password = "";
 
-    for(let i = 0; i < numOfDice; i++){
-        const value = Math.floor(Math.random() * 6) + 1;
-        // console.log(randomVal);
-        values.push(value);
-        images.push(`<img src=./dice_images/${value}.svg alt="Dice ${value}">`);
+    allowedChars += includeLowerCase ? lowercaseChars : "";
+    allowedChars += includeUpperCase ? uppercaseChars : "";
+    allowedChars += includeNumbers ? numberChars : "";
+    allowedChars += includeSymbols ? symbolChars : "";
+
+    console.log(allowedChars);
+
+    if(length <= 0){
+        return `Password length must be at least 1!`;
+    }
+    if(allowedChars.length === 0){
+        return `At least one set of characters needs to be selected!`
     }
 
-    diceResult.textContent = `Dice: ${values.join(', ')}`
-    diceImages.innerHTML = images.join("");
+    for(let i = 0; i < length; i++){
+        const randomIndex = Math.floor(Math.random() * allowedChars.length);
+        password += allowedChars[randomIndex];
+    }
 
-    console.log(values);
-    console.log(images);
+    return password;
 }
+
+const passwordLength = 10;
+const includeLowerCase = true;
+const includeUpperCase = true;
+const includeNumbers = true;
+const includeSymbols = true;
+
+const password = generatePassword(passwordLength,
+                                 includeLowerCase, 
+                                 includeUpperCase, 
+                                 includeNumbers, 
+                                 includeSymbols);
+
+console.log(`Generated password: ${password}`);
