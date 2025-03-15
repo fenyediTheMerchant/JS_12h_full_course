@@ -1,33 +1,61 @@
-// constructor = special method for defining the
-// properties and methods of objects
+// class = (ES6 feature) provides a more structured
+// and cleaner way to work with objects compared to
+// traditional constructor functions
+// ex.: static keyword, encapsulation, inheritance
 
-// Instead of writing 3 seperate car objects
-// we use constructor
+// Constructor ex.
+// function Product(name, price){
+//     this.name = name;
+//     this.price = price;
 
-// Constructor
-function Car(make, model, year, color){
-    this.make = make,
-    this.model = model,
-    this.year = year,
-    this.color = color,
-    this.drive = function(){
-        console.log(`You are drive the ${this.model}`);
+//     this.displayProduct = function(){
+//         console.log(`Product: ${this.name}`);
+//         console.log(`Price: $${this.price.toFixed(2)}`);
+//     };
+
+//     this.calculateTotal = function(salesTax){
+//         return this.price + (this.price * salesTax);
+//     }
+// }
+
+class Product{
+    constructor(name, price){
+        this.name = name;
+        this.price = price;
+    }
+
+    // function
+    displayProduct(){
+        console.log(`Product: ${this.name}`);
+        console.log(`Price: ${this.price.toFixed(2)} RON`);
+    }
+
+    displayTotal(salesTax){
+        return this.price * (1 + salesTax);
+    }
+    
+    calculateTotal(salesTax){
+        return this.price + (this.price * salesTax);
     }
 }
 
-const car1 = new Car("Ford", "Mustang", 2024, "Red");
-const car2 = new Car("Chevrolet", "Camaro", 2025, "Blue");
-// etc...
+const salesTax = 0.19;
 
-console.log(car1.make);
-console.log(car1.model);
-console.log(car1.year);
-console.log(car1.color);
+const product1 = new Product("Hamburger", 38);
+// Instead console log, we invoke the function
+product1.displayProduct();
+const total = product1.calculateTotal(salesTax);
+console.log(`Total price (with tax): ${total.toFixed(2)} RON`);
 
-car1.drive();
-car2.drive();
+const product2 = new Product("Pizza", 24);
+// Instead console log, we invoke the function
+product2.displayProduct();
+const total2 = product2.calculateTotal(salesTax);
+console.log(`Total price (with tax): ${total2.toFixed(2)} RON`);
 
-console.log(car2.make);
-console.log(car2.model);
-console.log(car2.year);
-console.log(car2.color);
+
+const product3 = new Product("Bread", 3);
+// Instead console log, we invoke the function
+product3.displayProduct();
+const total3 = product3.calculateTotal(salesTax);
+console.log(`Total price (with tax): ${total3.toFixed(2)} RON`);
