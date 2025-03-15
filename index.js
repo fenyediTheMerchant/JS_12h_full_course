@@ -1,56 +1,36 @@
-// nested objects = objects inside of other objects.
-// Allow you to represent more complex data structures
-// Child object is enclosed by a Parent object
 
-// Person{Adress{}, ContactInfo{}}
-// ShoppingCart{Keyboard{}, Mouse{}, Monitor{}}
+const fruits = [{name: "apple", color: "red", calories: 95}, 
+                {name: "orange", color: "orange", calories: 45}, 
+                {name: "banana", color: "yellow", calories: 105}, 
+                {name: "coconut", color: "white", calories: 159}, 
+                {name: "pineapple", color: "yellow", calories: 37}];
+                
+fruits.push({name: "grapes", color: "purple", calories: 62});
+let grape = fruits.pop();
 
-const person = {
-    fullName: "Spongebob Squarepants",
-    age: 30,
-    isStudent: true,
-    hobbies: ["karate", "jellyfishing", "cooking"],
-    address: {
-        street: "124. Conch St.",
-        city: "Bikini Bottom",
-        country: "Int. Waters"
-    }
-}
+// console.log(fruits);
 
-console.log(person.fullName);
-console.log(person.age);
-console.log(person.isStudent);
-console.log(person.hobbies[0]);
-// console.log(person.address.city);
+// forEach()
 
-for(const property in person.address){
-    console.log(person.address[property]);
-}
+fruits.forEach(fruit => console.log(fruit.color));
 
-// New Ex. with classes
+// map()
 
-class Person{
-    // rest parameter, store it within an array
-    constructor(name, age, ...address){
-        this.name = name;
-        this.age = age;
-        // creating a new object within an object
-        // object nodes will be the same as the new object constructor.
-        this.address = new Address(...address);
-    }
-}
+const fruitNames = fruits.map(fruit => fruit.name);
+console.log(fruitNames);
 
-class Address{
-    constructor(street, city, country){
-        this.street = street;
-        this.city = city;
-        this.country = country
-    }
-}
+// filter()
 
-const person1 = new Person("Spongebob", 30, 
-    "124 Concht st.", 
-    "Bikini Bottom", 
-    "Int. Wat");
+const yellowFruits = fruits.filter(fruit => fruit.color === "yellow");
+console.log(yellowFruits);
 
-console.log(person1);
+const lowCalFruits = fruits.filter(fruit => fruit.calories < 100);
+const highCalFruits = fruits.filter(fruit => fruit.calories > 100);
+console.log(lowCalFruits);
+console.log(highCalFruits);
+
+// reduce()
+const totalCalories = fruits.reduce((max, fruit) => 
+                                    fruit.calories > max.calories ?
+                                    fruit : max);
+console.log(totalCalories);
