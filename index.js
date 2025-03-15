@@ -1,38 +1,28 @@
-// object = A collection of related properties 
-// and/or methods (=function that belongs to an object)
-
-// Can represent real world objects (people, products, places)
-// object = {key:value,
-//           function()}
+// this = reference to the object where THIS is used
+// (the object depends on the immediate context)
+// person.name = this.name
 
 const person1 = {
-    firstName: "Spongebob",
-    lastName: "Squarepants",
-    age: 30,
-    isEmployed: true,
+    name: "Spongebob",
+    favFood: "hamburgers",
     sayHello: function(){
-        console.log(`Hi! I am ${this.firstName}!`)
+        console.log(`Hi I am ${this.name}`);
     },
     eat: function(){
-        console.log(`I am eating a Krabby Patty`)
+        console.log(`${this.name} is eating ${this.favFood}`)
     },
 }
 
 const person2 = {
-    firstName: "Patrick",
-    lastName: "Star",
-    age: 42,
-    isEmployed: false,
-    sayHello: () => 
-        console.log(`Hi! I am Patrick!`),
-    eat: () =>
-        console.log(`I am eating a Pizza`)
+    name: "Patrick",
+    favFood: "pizza",
+    sayHello: function(){
+        console.log(`Hi I am ${this.name}`);
+    },
+    // This not works
+    // It points to the main window object
+    eat: () => console.log(`${this.name} is eating ${this.favFood}`)
 }
-
-console.log(person1.firstName);
-console.log(person1.lastName);
-console.log(person1.age);
-console.log(person1.isEmployed);
 
 person1.sayHello();
 person1.eat();
