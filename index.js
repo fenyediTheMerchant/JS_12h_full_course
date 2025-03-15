@@ -1,63 +1,58 @@
-// static = keyword that defines properties or methods
-// that belong to a class itself rather than the objects
-// created from that class
-// (class own anything static, not the objects)
+// inheritence = allows a new class to inherit
+// properties and methods from an existing class
+// (parent -> child)
+// It helps with code reusability
 
-class MathUtil{
-    static PI = 3.14159;
-    
-    static getDiameter(radius){
-        return radius * 2;
+// DRY PRINCIPLE = DONT REPEAT YOURSELF!!!
+
+class Animal{
+    alive = true;
+
+    eat(){
+        console.log(`This ${this.name} is eating...`);
     }
-
-    static getCircumference(radius){
-        return 2 * this.PI * radius;
-    }
-
-    static getArea(radius){
-        return this.PI * radius * radius;
+    sleep(){
+        console.log(`This ${this.name} is sleeping...`);
     }
 }
 
-const MathUtil1 = new MathUtil();
-
-// Works
-console.log(MathUtil.PI);
-console.log(MathUtil.getDiameter(10));
-console.log(MathUtil.getCircumference(10));
-console.log(MathUtil.getArea(10));
-// Doesnt work
-console.log(MathUtil1.PI);
-
-
-// Example 2
-
-class User{
-    // Store how many users are created
-    static userCount = 0;
-
-    constructor(username){
-        this.username = username;
-        User.userCount++;
+class Rabbit extends Animal{
+    name = "Rabbit";
+    run(){
+        console.log(`This ${this.name} is running...`);
     }
-
-    static getUserCount(){
-        console.log(`There are ${User.userCount} nr. of user online.`);
+}
+class Fish extends Animal{
+    name = "Fish";
+    swim(){
+        console.log(`This ${this.name} is swimming...`);
     }
-
-    sayHello(){
-        console.log(`Hello my name is ${this.username}`);
+}
+class Hawk extends Animal{
+    name = "Hawk";
+    fly(){
+        console.log(`This ${this.name} is flying...`);
     }
 }
 
-const user1 = new User("Spongebob");
-const user2 = new User("Patrick");
-const user3 = new User("Sandy");
+const rabbit = new Rabbit();
+const fish = new Fish();
+const hawk = new Hawk();
 
-console.log(user1.username, User.userCount);
-console.log(user2.username, User.userCount);
-console.log(user3.username, User.userCount);
-user1.sayHello();
-user2.sayHello();
-user3.sayHello();
-User.getUserCount();
+// Chaning the property
+// rabbit.alive = false;
+
+console.log(rabbit.alive);
+console.log(fish.alive);
+
+rabbit.eat();
+rabbit.sleep();
+rabbit.run();
+
+fish.eat();
+fish.sleep();
+fish.swim();
+
+hawk.eat();
+hawk.sleep();
+hawk.fly();
