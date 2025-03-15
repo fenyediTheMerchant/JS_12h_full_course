@@ -1,108 +1,67 @@
-// getter = special method that makes a property readable
-// setter = special method that makes a property writeable
+// destructuring = extract values from arrays and objects
+// then assign them to variables in a convenient way
+// [] = to perform array destructuring
+// {} = to perfom object destructuring
+// 5 examples
 
-// validate and modify a value when reading/writing a property
-// Setter = "input validation"
-// Getter = can return additional logic
+// 
+// let letter = word[0];
 
-class Rectangle{
-    constructor(width, height){
-        this.width = width;
-        this.height = height;
-    }
+// EX1
+// Swap th value of two variables
 
-    set width(newWidth){
-        if(newWidth > 0){
-            this._width = newWidth 
-        }
-        else{
-            console.log("Width must be positive number.");
-        }
-    }
-    set height(newHeight){
-        if(newHeight > 0){
-            this._height = newHeight 
-        }
-        else{
-            console.log("Height must be positive number.");
-        }    
-    }
-    get width(){
-        return `${this._width.toFixed(1)} cm`;
-    }
-    get height(){
-        return `${this._height.toFixed(1)} cm`;
-    }
+let a = 1;
+let b = 2;
 
-    get area(){
-        return `${(this._width * this._height).toFixed(1)} cm ^2`;
-    }
+[a, b] = [b, a];
+
+console.log(a, b);
+
+// EX2
+// Swap 2 elements of an array
+
+// const colors = ["red", "green", "blue", "black", "white"];
+// [colors[0], colors[4]] = [colors[4], colors[0]];
+
+// console.log(colors);
+
+// EX3
+// Assign array elements to variables
+const colors = ["red", "green", "blue", "black", "white"];
+
+const [firstColor, secondColor, thirdColor, ...extraColors] = 
+    colors;
+
+console.log(firstColor,secondColor,thirdColor, extraColors);
+
+// EX4
+// Extract values from objects
+const person1 = {
+    firstName: "Spongebob",
+    lastName: "Squarepants",
+    age: 30,
+    job: "Fry Cook",
 }
 
-// Wrong values can be solved with getters and setters
-// const rectangle = new Rectangle(-10000, "pizza");
-const rectangle = new Rectangle(3, 4);
-
-rectangle.width = -1;
-rectangle.height = -1;
-
-console.log(rectangle.width, rectangle.height);
-console.log(rectangle.area);
-
-// Ex2.
-
-class Person{
-    constructor(firstName, lastName, age){
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-    }
-
-    set firstName(newFirstName){
-        if(typeof newFirstName === "string"
-            && newFirstName.length > 0
-        ){
-            this._firstName = newFirstName;
-        }
-        else{
-            console.error("Fist name must be a non empty string");
-        }
-    }
-    set lastName(newLastName){
-        if(typeof newLastName === "string"
-            && newLastName.length > 0
-        ){
-            this._lastName = newLastName;
-        }
-        else{
-            console.error("Last name must be a non empty string");
-        }
-    }
-    set age(newAge){
-        if(typeof newAge === "number"
-            && newAge >= 0
-        ){
-            this._age = newAge;
-        }
-        else{
-            console.error("Age must be a positive num.");
-        }
-    }
-    get firstName(){
-        return this._firstName;
-    }
-    get lastName(){
-        return this._lastName;
-    }
-    get age(){
-        return this._age;
-    }
-    get fullName(){
-        return this._firstName + " " + this._lastName
-    }
+const person2 = {
+    firstName: "Patrick",
+    lastName: "Star",
+    age: 34,
 }
 
-const person = new Person("Spongebob", "Squarepants", 65);
+const {firstName, lastName, age, job="Unemployed"} = person2;
 
-console.log(person.firstName, person.lastName, person.age);
-console.log(person.fullName);
+console.log(firstName, lastName, age, job);
+
+// 👍
+
+// EX5
+//  Desctructure in function parameters
+
+function displayPerson({firstName, lastName, age, job="Unemployed"}){
+    console.log(`name: ${firstName} ${lastName}`);
+    console.log(`age: ${age}`);
+    console.log(`job: ${job}`);
+}
+
+displayPerson(person1);
