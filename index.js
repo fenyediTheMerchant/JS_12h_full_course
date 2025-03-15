@@ -1,58 +1,50 @@
-// inheritence = allows a new class to inherit
-// properties and methods from an existing class
-// (parent -> child)
-// It helps with code reusability
+// super = a keyword used in classes to call the
+// constructor or acces the properites and methods of
+// a parent ("super"-class)
+// this = this object
+// supe = the parent
 
-// DRY PRINCIPLE = DONT REPEAT YOURSELF!!!
+// DRY Principle here too.
+// Because every animal has a name and age, the parent
+// class should construct these.
 
 class Animal{
-    alive = true;
-
-    eat(){
-        console.log(`This ${this.name} is eating...`);
-    }
-    sleep(){
-        console.log(`This ${this.name} is sleeping...`);
+    constructor(name, age){
+        this.name = name;
+        this.age = age;
     }
 }
-
 class Rabbit extends Animal{
-    name = "Rabbit";
-    run(){
-        console.log(`This ${this.name} is running...`);
+    constructor(name, age, runSpeed){
+        super(name, age);
+        this.runSpeed = runSpeed;
     }
 }
 class Fish extends Animal{
-    name = "Fish";
-    swim(){
-        console.log(`This ${this.name} is swimming...`);
+    constructor(name, age, swimSpeed){
+        super(name, age);
+        this.swimSpeed = swimSpeed;
     }
 }
 class Hawk extends Animal{
-    name = "Hawk";
-    fly(){
-        console.log(`This ${this.name} is flying...`);
+    constructor(name, age, flySpeed){
+        super(name, age);
+        this.flySpeed = flySpeed;
     }
 }
 
-const rabbit = new Rabbit();
-const fish = new Fish();
-const hawk = new Hawk();
+const rabbit = new Rabbit("Rabbit", 1, 25);
+const fish = new Fish("Fish", 2, 12);
+const hawk = new Hawk("Hawk", 3, 50);
 
-// Chaning the property
-// rabbit.alive = false;
+console.log(rabbit.name);
+console.log(rabbit.age);
+console.log(rabbit.runSpeed);
 
-console.log(rabbit.alive);
-console.log(fish.alive);
+console.log(fish.name);
+console.log(fish.age);
+console.log(fish.swimSpeed);
 
-rabbit.eat();
-rabbit.sleep();
-rabbit.run();
-
-fish.eat();
-fish.sleep();
-fish.swim();
-
-hawk.eat();
-hawk.sleep();
-hawk.fly();
+console.log(hawk.name);
+console.log(hawk.age);
+console.log(hawk.flySpeed);
