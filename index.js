@@ -1,71 +1,40 @@
-// arrow functions = a concise (rovid, egyertelmu) way
-// to write function expression
-// Good for simple functions that you use only once
-// (parameters) => some code
+// object = A collection of related properties 
+// and/or methods (=function that belongs to an object)
 
-// V1. Old fashioned - function Declarations
-function hello1(){
-    console.log("Hello1");
-}
-hello1();
+// Can represent real world objects (people, products, places)
+// object = {key:value,
+//           function()}
 
-// V2. Last method - function expressions
-const hello2 = function(){
-    console.log("Hello2");
-}
-hello2();
-
-// V3. Hottest - arrow functions
-const hello3 = () => console.log("Hello3");
-hello3()
-
-// V4. Hottest - arrow functions with parameters
-const hello4 = (name) => console.log(`Hello: ${name}`);
-hello4("Levi")
-
-// V5. Hottest - arrow functions with parameters
-// and with multiple lines
-const hello5 = (name, age) => {
-    console.log(`Hello: ${name}`)
-    console.log(`You are ${age} years old.`)
-};
-hello5("Levi", 25)
-
-// Set Timeout ex. with function decl.
-setTimeout(hello6, 3000);
-
-function hello6(){
-    console.log("Hello6");
+const person1 = {
+    firstName: "Spongebob",
+    lastName: "Squarepants",
+    age: 30,
+    isEmployed: true,
+    sayHello: function(){
+        console.log(`Hi! I am ${this.firstName}!`)
+    },
+    eat: function(){
+        console.log(`I am eating a Krabby Patty`)
+    },
 }
 
-// Set Timeout ex. with function expr.
-setTimeout(function(){
-    console.log("Hello7");
-}, 3000);
+const person2 = {
+    firstName: "Patrick",
+    lastName: "Star",
+    age: 42,
+    isEmployed: false,
+    sayHello: () => 
+        console.log(`Hi! I am Patrick!`),
+    eat: () =>
+        console.log(`I am eating a Pizza`)
+}
 
-// Set Timeout ex. with arrow funct.
-setTimeout(() => console.log("Hello8"), 3000);
+console.log(person1.firstName);
+console.log(person1.lastName);
+console.log(person1.age);
+console.log(person1.isEmployed);
 
-
-// Arrow functions with map
-const numbers = [1, 2, 3, 4, 5, 6];
-const squares = numbers.map((element) => Math.pow(element, 2));
-const cubes = numbers.map((element) => Math.pow(element, 3));
-console.log(squares);
-console.log(cubes);
-
-// Arrow functions with filter
-const evenNums = numbers.filter(
-    (element) => element % 2 === 0 ?  true : false
-);
-console.log(evenNums);
-const oddNums = numbers.filter(
-    (element) => element % 2 !== 0 ? true : false
-);
-console.log(oddNums);
-
-// Arrow functions with reduce
-const total = numbers.reduce(
-    (accumulator, element) => accumulator += element
-);
-console.log(total);
+person1.sayHello();
+person1.eat();
+person2.sayHello();
+person2.eat();
