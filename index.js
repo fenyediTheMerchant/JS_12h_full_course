@@ -1,30 +1,33 @@
-// this = reference to the object where THIS is used
-// (the object depends on the immediate context)
-// person.name = this.name
+// constructor = special method for defining the
+// properties and methods of objects
 
-const person1 = {
-    name: "Spongebob",
-    favFood: "hamburgers",
-    sayHello: function(){
-        console.log(`Hi I am ${this.name}`);
-    },
-    eat: function(){
-        console.log(`${this.name} is eating ${this.favFood}`)
-    },
+// Instead of writing 3 seperate car objects
+// we use constructor
+
+// Constructor
+function Car(make, model, year, color){
+    this.make = make,
+    this.model = model,
+    this.year = year,
+    this.color = color,
+    this.drive = function(){
+        console.log(`You are drive the ${this.model}`);
+    }
 }
 
-const person2 = {
-    name: "Patrick",
-    favFood: "pizza",
-    sayHello: function(){
-        console.log(`Hi I am ${this.name}`);
-    },
-    // This not works
-    // It points to the main window object
-    eat: () => console.log(`${this.name} is eating ${this.favFood}`)
-}
+const car1 = new Car("Ford", "Mustang", 2024, "Red");
+const car2 = new Car("Chevrolet", "Camaro", 2025, "Blue");
+// etc...
 
-person1.sayHello();
-person1.eat();
-person2.sayHello();
-person2.eat();
+console.log(car1.make);
+console.log(car1.model);
+console.log(car1.year);
+console.log(car1.color);
+
+car1.drive();
+car2.drive();
+
+console.log(car2.make);
+console.log(car2.model);
+console.log(car2.year);
+console.log(car2.color);
