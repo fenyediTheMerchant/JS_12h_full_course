@@ -1,16 +1,15 @@
+body{
+    margin: 0;
+}
+
 #myBox{
     background-color: lightgreen;
-    width: 300px;
-    height: 300px;
+    width: 100px;
+    height: 100px;
     font-size: 3rem;
     font-weight: bold;
     display: flex;
+    justify-content: center;
     align-items: center;
-    text-align: center;
-    color: black;
-    padding: 1rem 2rem;
-}
-
-#myButton{
-    font-size: 3rem;
+    position: relative;
 }
