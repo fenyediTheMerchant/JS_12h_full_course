@@ -1,31 +1,18 @@
-// sort() = method uset to sort elements of an array in place.
-// Sorts elements as string in lexicographic order, not alphabetical
-// lexicographic = (alphabet + numbers + symbols) as strings
+const cards = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"];
 
-let fruits = ["apple", "orange", "banana", "coconut", "pineapple"];
-let numbers = [1, 10, 2 ,9 , 3, 8 ,4 ,7, 5, 6];
+// Not recomended, larger the array, the more inefficient
+// cards.sort(() => Math.random() - 0.5);
 
-fruits.sort();
-// This not works
-// numbers.sort();
 
-// Compare the values in pair
-// After arrow is the condition
-numbers.sort((a, b) => a - b);
+shuffle(cards);
 
-console.log(fruits);
-console.log(numbers);
+console.log(cards);
 
-const people = [{name: "Spongebob", age: 30, gpa: 3.0}, 
-                {name: "Patrick", age: 37, gpa: 1.5},
-                {name: "Squidward", age: 51, gpa: 2.5},
-                {name: "Sandy", age: 27, gpa: 4.0}];
+function shuffle(array){
+    for(let i = array.length - 1; i > 0; i--){
+        const random = Math.floor(Math.random() * (i + 1));
 
-// Here a is first object b is second
-// This is good for numbers
-people.sort((a, b) => a.age - b.age);
-
-// This is good for string
-people.sort((a, b) => a.name.localeCompare(b.name));
-
-console.log(people);
+        [array[i], array[random]] = [array[random], array[i]]
+        console.log(array);
+    }
+}
