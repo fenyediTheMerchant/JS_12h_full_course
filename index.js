@@ -1,45 +1,56 @@
-// Synchronous = Executes line by line consecutively in a
-// sequantial manner. Code that waits for an operation to
-// complete.
+// Error = An Object that is created to represent a
+// problem that occours.
 
-// Asynchronous = Allows multiple operations to be performed
-// concurrently without waiting. Doesn't block the execution
-// flow and allows the program to continue
-// (I/O operations, network requests, fetching data)
-// Handled with: Callbacks, Promises, Async/Await
+// It is often used with user input or establishing a 
+// connection, as it is expected that the user my give
+// wrong values, or the connection cant be established
 
-// Sync code
-// console.log("Task 1");
-// console.log("Task 2");
-// console.log("Task 3");
+// Ex. NETWORK ERRORS, PROMISE REJECTION, SECURITY ERROR
 
-// Async code
-// setTimeout is async function
-setTimeout(() => {
-    console.log("Task 1")
-    console.log("--------------------------------");
-    },2000);
+// Without error handling
+// console.log(x);
+// console.log("You have reached the end!");
 
-console.log("Task 2");
-console.log("Task 3");
-console.log("Task 4");
+// We can handle them with
+// try{} = Encloses code that might potentially cause an error
+// catch{} = Catch and handle any thrown Errors from try{}
+// finally{} = (optional) Always executes. Used mostly for
+// cleanup ex. close files, close connections, release resources
 
-// Async mode -> Ex. below = make sure task 1 runs before 2,3,4
-// Resolved with a callback
-function func1(callback){
-    setTimeout(() => {
-        console.log("Task 1");
-        // Use () here to call the function..
-        callback();
-    },3000);
+// With error handling
+
+try{
+    console.log("Hi");
 }
-
-function func2(){
-    console.log("Task 2");
-    console.log("Task 3");
-    console.log("Task 4");
-    console.log("--------------------------------");
+catch(error){
+    console.error(error);
 }
+finally{
+    console.log("This always executes");
+}1
+console.log("You have reached the end!");
 
-// Dont use () in callback!!! IT will run immideatly
-func1(func2);
+
+// Ex. User input
+// Withot trycatch this is dangerous because 1/0 = infinity
+try{
+    const dividend = Number(window.prompt("Enter a dividend: "));
+    const divisor = Number(window.prompt("Enter a divisor: "));
+    
+    // We can intentionally make an error object
+    if(divisor == 0){
+        // We make a new error object
+        throw new Error("You can't divide by 0");
+    }
+    if(isNaN(dividend) || isNaN(dividend)){
+        throw new Error("Values must be a number");
+    }
+
+    const result = dividend / divisor;
+    
+    console.log(result);
+}
+catch(error){
+    console.error(error);
+}
+console.log("You have reached the end!");
