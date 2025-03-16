@@ -1,45 +1,104 @@
-// Date objects = 
-// Objects that contain values that represent
-// dates and times.
-// These date objects can be changed and formatted
+// Closure = A function defined inside of another function.
+// The inner function has access to the variables and scope
+// of the outer function.
 
-// Date(year, month, day, hour, minute, sec, ms)
-// const date = new Date(2024, 0, 1, 2, 3, 4);
-// const date = new Date("2024-01-02T12:00:00Z")
-// const date =  new Date(1700000000000);
+// Allow for private variables and state maintenance.
+// Used freq. in JS frameworks: React, Vue, Angular
 
-const date = new Date();
+// Used in function based components.
+// Advantage: Any varuiable in the outer closure considered private
 
-const year = date.getFullYear();
-const month = date.getMonth();
-// Date! Not Day! Day is a week day.
-const day = date.getDate();
-const hour = date.getHours();
-const minutes = date.getMinutes();
-const seconds = date.getSeconds();
-const dayOfWeek = date.getDay();
+function outer(){
+    
+    let message = "Hello";
 
-console.log(year);
-console.log(month);
-console.log(day);
-console.log(hour);
-console.log(minutes);
-console.log(seconds);
-console.log(dayOfWeek);
+    // Inner has access to everything from outer scope {}
+    function inner(){
+        console.log(message);
+    }
 
-date.setFullYear(2024);
-date.setMonth(0);
-date.setDate(1);
-date.setHours(2);
-date.setMinutes(3);
+    // We have to call the inner function from here
+    inner();
+}
 
-console.log(date);
+message = "Goodbye";
+
+// outer() enters the outer scope
+outer();
 
 
-// Comparing
 
-const date1 = new Date("2023-12-31");
-const date2 = new Date("2024-01-01");
+// Ex. closure for maintaining the state for a variable
 
-(date2 > date1) ? console.log("Happy new year"):  console.log();
-(date2 < date1) ? console.log("Happy new year"):  console.log();
+// This doesnt work as every calls resets the count variable
+// The state is not maintained
+// function increment(){
+//     let count = 0;
+//     count++;
+//     console.log(`Count increased to ${count}`);
+// }
+
+// This basically hides, makes the count private, innaccasbile without a get method
+function createCounter(){
+
+    let count = 0;
+
+    function increment(){
+        count++;
+        console.log(`Count increased to ${count}`);
+    }
+
+    function getCount(){
+        return count;
+    }
+
+    // Returning an object, with properties
+    // Properties given here will be publicly available
+    // return {increment:increment, getCount};   
+    // This is better
+    return {increment, getCount}
+
+}
+
+const counter = createCounter();
+
+counter.increment();
+counter.increment();
+counter.increment();
+counter.increment();
+
+console.log(`The current count is: ${counter.getCount()}`);
+console.log(counter);
+
+// Last Ex. Closure for a game ----------------------------
+
+function createGame(){
+    let score = 0;
+
+    function increaseScore(points){
+        score += points;
+        console.log(`+${points} pts.`);
+    }
+    function decreaseScore(points){
+        score -= points;
+        console.log(`-${points} pts.`);
+    }
+    function getScore(){
+        return score;
+    }
+
+    return {increaseScore, decreaseScore, getScore}
+}
+
+
+// THIS IS BAD!! This should be not allowed
+
+const game = createGame();
+
+game.score = 100000000000;
+
+game.increaseScore(5);
+game.increaseScore(6);
+game.decreaseScore(3);
+console.log(`The final score is: ${game.getScore()} pts.`);
+
