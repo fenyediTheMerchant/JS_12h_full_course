@@ -1,23 +1,22 @@
-// CALCULATOR PROGRAM
+// DOM = Document Object Model
+// An Object{} that represents the page you see in the web browser,
+// and provides you an API to interact with it.
 
-const display = document.getElementById("display");
+// Web Browser constructs the DOM when it loads an HTML document,
+// and structures all the elements in a tree-like presentation.
 
-function appendToDisplay(input){
-    // Number(display.value) === 0 ? display.value = input : display.value += input; 
-    display.value = Number(display.value) === 0 ? input : display.value + input;
-}
+// Javascript can access the DOM to dynamically change the content,
+// structure, and style of a web page.
 
-function clearDisplay(){
-    display.value = 0;
-}
+console.log(document);
 
-function calculate(){
-    // eval() in this case NEVER EVER use this in real life!
-    try{
-        display.value = eval(display.value);
-    }
-    catch(error){
-        display.value = "ERROR!";
-        console.error(error);
-    }
-}
+console.dir(document);
+
+document.body.style.backgroundColor = "hsl(233, 0%, 15%)";
+
+document.title = "My website";
+
+const username = "John Doe";
+const welcomeMsg = document.getElementById("welcome-msg");
+
+welcomeMsg.textContent += username === "" ? `Guest` : username;
