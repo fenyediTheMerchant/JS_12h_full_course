@@ -1,36 +1,31 @@
+// sort() = method uset to sort elements of an array in place.
+// Sorts elements as string in lexicographic order, not alphabetical
+// lexicographic = (alphabet + numbers + symbols) as strings
 
-const fruits = [{name: "apple", color: "red", calories: 95}, 
-                {name: "orange", color: "orange", calories: 45}, 
-                {name: "banana", color: "yellow", calories: 105}, 
-                {name: "coconut", color: "white", calories: 159}, 
-                {name: "pineapple", color: "yellow", calories: 37}];
-                
-fruits.push({name: "grapes", color: "purple", calories: 62});
-let grape = fruits.pop();
+let fruits = ["apple", "orange", "banana", "coconut", "pineapple"];
+let numbers = [1, 10, 2 ,9 , 3, 8 ,4 ,7, 5, 6];
 
-// console.log(fruits);
+fruits.sort();
+// This not works
+// numbers.sort();
 
-// forEach()
+// Compare the values in pair
+// After arrow is the condition
+numbers.sort((a, b) => a - b);
 
-fruits.forEach(fruit => console.log(fruit.color));
+console.log(fruits);
+console.log(numbers);
 
-// map()
+const people = [{name: "Spongebob", age: 30, gpa: 3.0}, 
+                {name: "Patrick", age: 37, gpa: 1.5},
+                {name: "Squidward", age: 51, gpa: 2.5},
+                {name: "Sandy", age: 27, gpa: 4.0}];
 
-const fruitNames = fruits.map(fruit => fruit.name);
-console.log(fruitNames);
+// Here a is first object b is second
+// This is good for numbers
+people.sort((a, b) => a.age - b.age);
 
-// filter()
+// This is good for string
+people.sort((a, b) => a.name.localeCompare(b.name));
 
-const yellowFruits = fruits.filter(fruit => fruit.color === "yellow");
-console.log(yellowFruits);
-
-const lowCalFruits = fruits.filter(fruit => fruit.calories < 100);
-const highCalFruits = fruits.filter(fruit => fruit.calories > 100);
-console.log(lowCalFruits);
-console.log(highCalFruits);
-
-// reduce()
-const totalCalories = fruits.reduce((max, fruit) => 
-                                    fruit.calories > max.calories ?
-                                    fruit : max);
-console.log(totalCalories);
+console.log(people);
