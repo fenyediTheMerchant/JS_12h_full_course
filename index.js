@@ -1,57 +1,14 @@
+// ES6 Module = A module is an externel file that contains
+// reusable code that can be imported into other JS files.
 
-const display = document.getElementById("display");
-let timer = null;
-let startTime = 0;
-let elapsedTime = 0;
-let isRunning = false;
+// Write reusable code for many different apps.
+// Can contain variables, classes, functions... and more
+// Introcued as part of ECMAScript 2015 update.
 
-function start(){
+import {PI, getCircumference, getArea, getVolume} 
+from './mathUtil.js';
 
-    if(!isRunning){
-        startTime = Date.now() - elapsedTime;
-        // Storing the id for the setInterval
-        timer = setInterval(update, 10);
-        isRunning = true;
-        console.log(timer);
-    }
-    console.log(startTime);
-}
-
-function stop(){
-
-    if(isRunning){
-        clearInterval(timer);
-        elapsedTime = Date.now() - startTime;
-        isRunning = false;
-    }
-}
-
-function reset(){
-    clearInterval(timer);
-    startTime = 0;
-    elapsedTime = 0;
-    isRunning = false;
-    display.textContent = "00:00:00:00"
-}
-
-function update(){
-
-    // Get the time in milisec.
-    const currentTime = Date.now();
-    elapsedTime = currentTime - startTime
-
-    let hours = Math.floor(elapsedTime / (1000 * 60 * 60));
-    let minutes = Math.floor(elapsedTime / (1000 * 60) % 60);
-    let seconds = Math.floor(elapsedTime / 1000 % 60);
-    let miliseconds = Math.floor(elapsedTime % 1000 / 10);
-
-    hours = hours.toString().padStart(2, "0");
-    minutes = minutes.toString().padStart(2, "0");
-    seconds = seconds.toString().padStart(2, "0");
-    miliseconds = miliseconds.toString().padStart(2, "0");
-
-    console.log(`Elapsed: ${elapsedTime}, current: ${currentTime}, start: ${startTime}`);
-    console.log(hours, minutes, seconds,miliseconds);
-
-    display.textContent = `${hours}:${minutes}:${seconds}:${miliseconds}`;
-}
+console.log(PI);
+console.log(getCircumference(10));
+console.log(getArea(10));
+console.log(getVolume(10));
