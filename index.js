@@ -1,22 +1,74 @@
-// DOM = Document Object Model
-// An Object{} that represents the page you see in the web browser,
-// and provides you an API to interact with it.
+// element selectors = 
+// Methods used to target and manipulate HTML element.
+// They allow you to select one or multiple HTML elements from
+// the DOM.
 
-// Web Browser constructs the DOM when it loads an HTML document,
-// and structures all the elements in a tree-like presentation.
+// 1. get element by id - ELEMENT OR NULL
+// 2. get elements by class name - HTML COLLECTION LIVE
+// 3. get elements by tag name - HTML COLLECTION LIVE
+// 4. query selector - ELEMENT OR NULL
+// 5. query selector all - NODELIST STATIC
 
-// Javascript can access the DOM to dynamically change the content,
-// structure, and style of a web page.
+// 1. getElementById
+// Reference to the heading
+const myHeading = document.getElementById("my-heading");
+// DOM uses camelcase conv. while css -
+myHeading.style.backgroundColor = "yellow";
+myHeading.style.textAlign = "center";
 
-console.log(document);
+// console.log(myHeading);
 
-console.dir(document);
+// 2. getElementsByClassName
+const fruits = document.getElementsByClassName("fruits");
+// console.log(fruits);
 
-document.body.style.backgroundColor = "hsl(233, 0%, 15%)";
+fruits[0].style.backgroundColor = "yellow"
 
-document.title = "My website";
+// html collections are "arrays" but have limited amount of utilities
+for(let fruit of fruits){
+    fruit.style.backgroundColor = "yellow";
+}
 
-const username = "John Doe";
-const welcomeMsg = document.getElementById("welcome-msg");
+// foreach doesnt work
+// fruits.forEach();
 
-welcomeMsg.textContent += username === "" ? `Guest` : username;
+// but we can typecast the html collection to array
+
+Array.from(fruits).forEach(fruit => {
+    fruit.style.backgroundColor = "red";
+})
+
+// 3. getElementsByTagName
+const h4Elements = document.getElementsByTagName("h4");
+const liElements = document.getElementsByTagName("li");
+
+// console.log(h4Elements);
+
+// h4Elements[0].style.backgroundColor = "orange";
+
+for(let h4Element of h4Elements){
+    h4Element.style.backgroundColor = "orange";
+}
+for(let liElement of liElements){
+    liElement.style.backgroundColor = "lightgreen";
+}
+
+// 4. querySelector, u can select tag or classname
+const element = document.querySelector(".fruits");
+
+element.style.backgroundColor = "magenta";
+
+// 5. querySelectorAll returns a nodelist, similar to an HTML collections
+// but it has built in methods, but they are static, they do
+// not update like html collections
+
+const foods = document.querySelectorAll("li");
+
+foods[1].style.backgroundColor = "purple";
+
+// This is not needed for nodelist
+// Array.from(foods).forEach(food => console.log(food.textContent));
+
+foods.forEach(food =>{
+    food.style.backgroundColor = "purple";
+})
