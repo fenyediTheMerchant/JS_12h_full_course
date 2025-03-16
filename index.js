@@ -1,74 +1,53 @@
-// element selectors = 
-// Methods used to target and manipulate HTML element.
-// They allow you to select one or multiple HTML elements from
-// the DOM.
+// DOM Navigation = The process of navigating through the structure
+// of an HTML document using JavaScript.
 
-// 1. get element by id - ELEMENT OR NULL
-// 2. get elements by class name - HTML COLLECTION LIVE
-// 3. get elements by tag name - HTML COLLECTION LIVE
-// 4. query selector - ELEMENT OR NULL
-// 5. query selector all - NODELIST STATIC
+// .firstElementChild
+// .lastElementChild
+// .nextElementSibling
+// .previousElementSiblin
+// .parentElement
+// .children
 
-// 1. getElementById
-// Reference to the heading
-const myHeading = document.getElementById("my-heading");
-// DOM uses camelcase conv. while css -
-myHeading.style.backgroundColor = "yellow";
-myHeading.style.textAlign = "center";
+// .firstElementChild --------------------------
 
-// console.log(myHeading);
+const element = document.getElementById("fruits");
+const firstChild = element.firstElementChild;
+firstChild.style.backgroundColor = "yellow";
 
-// 2. getElementsByClassName
-const fruits = document.getElementsByClassName("fruits");
-// console.log(fruits);
+// query selector all ex. combined with .lastElementChild------
 
-fruits[0].style.backgroundColor = "yellow"
-
-// html collections are "arrays" but have limited amount of utilities
-for(let fruit of fruits){
-    fruit.style.backgroundColor = "yellow";
-}
-
-// foreach doesnt work
-// fruits.forEach();
-
-// but we can typecast the html collection to array
-
-Array.from(fruits).forEach(fruit => {
-    fruit.style.backgroundColor = "red";
+const ulElements = document.querySelectorAll("ul");
+ulElements.forEach(ulElement => {
+    const lastChild = ulElement.lastElementChild;
+    lastChild.style.backgroundColor = "red";
 })
 
-// 3. getElementsByTagName
-const h4Elements = document.getElementsByTagName("h4");
-const liElements = document.getElementsByTagName("li");
+// .nextElementSibling --------------------
 
-// console.log(h4Elements);
+const element2 = document.getElementById("apple");
+const nextSibling = element2.nextElementSibling;
+nextSibling.style.backgroundColor = "lightgreen";
 
-// h4Elements[0].style.backgroundColor = "orange";
+// .previousElementSiblin ----------------
 
-for(let h4Element of h4Elements){
-    h4Element.style.backgroundColor = "orange";
-}
-for(let liElement of liElements){
-    liElement.style.backgroundColor = "lightgreen";
-}
+const element3 = document.getElementById("ice cream");
+const prevSibling = element3.previousElementSibling;
+prevSibling.style.backgroundColor = "magenta";
 
-// 4. querySelector, u can select tag or classname
-const element = document.querySelector(".fruits");
+// .parentElement --------------
 
-element.style.backgroundColor = "magenta";
+const element4 = document.getElementById("ice cream");
+const parent = element4.parentElement;
+parent.style.backgroundColor = "orange";
 
-// 5. querySelectorAll returns a nodelist, similar to an HTML collections
-// but it has built in methods, but they are static, they do
-// not update like html collections
+// ..children -----------
 
-const foods = document.querySelectorAll("li");
-
-foods[1].style.backgroundColor = "purple";
-
-// This is not needed for nodelist
-// Array.from(foods).forEach(food => console.log(food.textContent));
-
-foods.forEach(food =>{
-    food.style.backgroundColor = "purple";
+const element5 = document.getElementById("vegetables");
+const childrens = element5.children;
+Array.from(childrens).forEach(children => {
+    children.style.backgroundColor = "grey";
 })
+
+// get ~middle children
+
+childrens[Math.floor(childrens.length / 2)].style.backgroundColor = "pink";
