@@ -1,53 +1,25 @@
-// DOM Navigation = The process of navigating through the structure
-// of an HTML document using JavaScript.
+// Example 1 <h1> -----------
 
-// .firstElementChild
-// .lastElementChild
-// .nextElementSibling
-// .previousElementSiblin
-// .parentElement
-// .children
+// Step 1. Create the element
+const newH1 = document.createElement("h1");
 
-// .firstElementChild --------------------------
+// Step 2. Add attributes/properties
+newH1.textContent = "I like pizza!";
+newH1.id = "myH1";
+newH1.style.color = "tomato";
+newH1.style.textAlign = "center";
 
-const element = document.getElementById("fruits");
-const firstChild = element.firstElementChild;
-firstChild.style.backgroundColor = "yellow";
+// Step 3. Append element to DOM
+// document.body.append(newH1); 
+// document.body.prepend(newH1);
+document.getElementById("box1").append(newH1);
 
-// query selector all ex. combined with .lastElementChild------
+// const box3 = document.getElementById("box3");
+// document.body.insertBefore(newH1, box3);
 
-const ulElements = document.querySelectorAll("ul");
-ulElements.forEach(ulElement => {
-    const lastChild = ulElement.lastElementChild;
-    lastChild.style.backgroundColor = "red";
-})
+// Without getElementById
+// const boxes = document.querySelectorAll(".box");
+// document.body.insertBefore(newH1, boxes[3]);
 
-// .nextElementSibling --------------------
-
-const element2 = document.getElementById("apple");
-const nextSibling = element2.nextElementSibling;
-nextSibling.style.backgroundColor = "lightgreen";
-
-// .previousElementSiblin ----------------
-
-const element3 = document.getElementById("ice cream");
-const prevSibling = element3.previousElementSibling;
-prevSibling.style.backgroundColor = "magenta";
-
-// .parentElement --------------
-
-const element4 = document.getElementById("ice cream");
-const parent = element4.parentElement;
-parent.style.backgroundColor = "orange";
-
-// ..children -----------
-
-const element5 = document.getElementById("vegetables");
-const childrens = element5.children;
-Array.from(childrens).forEach(children => {
-    children.style.backgroundColor = "grey";
-})
-
-// get ~middle children
-
-childrens[Math.floor(childrens.length / 2)].style.backgroundColor = "pink";
+// Remove HTML Element
+document.getElementById("box1").removeChild(newH1);
