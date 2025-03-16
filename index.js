@@ -1,25 +1,32 @@
-// Example 2 ol -----------
+// eventListener = Listen for specific events to create inter-
+// active web pages.
+// Events: click, mouseover, mouseout
+// .addEventListener(event, callback);
 
-// Step 1. Create the element
-const newListItem = document.createElement("li");
+const myBox = document.getElementById("myBox");
+const myButton = document.getElementById("myButton");
 
-// Step 2. Add attributes/properties
-newListItem.textContent = "Coconut";
-newListItem.id = "coconut";
-newListItem.style.fontWeight = "bold";
-newListItem.style.backgroundColor = "lightgreen";
+function changeColor(event){
+    console.log(event);
+    myBox.style.backgroundColor = "tomato";
+    myBox.textContent = "OUCH!! 🤠"
+}
 
-// Step 3. Append element to DOM
-// document.body.append(newListItem);
-document.getElementById("fruits").prepend(newListItem);
+myButton.addEventListener("click", event => {
+    console.log(event);
+    myBox.style.backgroundColor = "tomato";
+    myBox.textContent = "OUCH!! 🤠"
+});
 
-// Insert between apple and orange
-const orange = document.getElementById("orange");
-document.getElementById("fruits").insertBefore(newListItem, orange);
+myButton.addEventListener("mouseover", event => {
+    console.log(event);
+    myBox.style.backgroundColor = "tomato";
+    myBox.textContent = "Hello!! 🤝"
+});
 
-// Insert between apple and orange without id
-const listItems = document.querySelectorAll("#fruits li");
-document.getElementById("fruits").insertBefore(newListItem, listItems[4]);
+myButton.addEventListener("mouseout", event => {
+    console.log(event);
+    myBox.style.backgroundColor = "tomato";
+    myBox.textContent = "Goodbye!! 🫡"
+});
 
-// Remove HTML Element
-document.getElementById("fruits").removeChild(newListItem);
