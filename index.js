@@ -1,104 +1,39 @@
-// Closure = A function defined inside of another function.
-// The inner function has access to the variables and scope
-// of the outer function.
+// setTimeout() = a function in JavaScipr that allows you to
+// schedule the execution of a function after an amount of time (ms)
 
-// Allow for private variables and state maintenance.
-// Used freq. in JS frameworks: React, Vue, Angular
-
-// Used in function based components.
-// Advantage: Any varuiable in the outer closure considered private
-
-function outer(){
-    
-    let message = "Hello";
-
-    // Inner has access to everything from outer scope {}
-    function inner(){
-        console.log(message);
-    }
-
-    // We have to call the inner function from here
-    inner();
-}
-
-message = "Goodbye";
-
-// outer() enters the outer scope
-outer();
+// Times are approximate (varies based on the workload of the
+// Javascript runtime env.) Shouldn't be used on stuff like stopwatch
 
 
-
-// Ex. closure for maintaining the state for a variable
-
-// This doesnt work as every calls resets the count variable
-// The state is not maintained
-// function increment(){
-//     let count = 0;
-//     count++;
-//     console.log(`Count increased to ${count}`);
+// setTimeout(callback, delay);
+// function sayHello(){
+//     window.alert("Hello");
 // }
+// setTimeout(sayHello, 3000);
 
-// This basically hides, makes the count private, innaccasbile without a get method
-function createCounter(){
 
-    let count = 0;
+// setTimeout(anonymus func., delay);
+// setTimeout(function(){window.alert("Hello")}, 3000);
 
-    function increment(){
-        count++;
-        console.log(`Count increased to ${count}`);
-    }
 
-    function getCount(){
-        return count;
-    }
+// setTimeout(arronfunct., delay) 
+// setTimeout(() => window.alert("Hello"), 3000)
 
-    // Returning an object, with properties
-    // Properties given here will be publicly available
-    // return {increment:increment, getCount};   
-    // This is better
-    return {increment, getCount}
 
+// clearTimeout(timeoutId) = 
+// can cancel a timeout before it triggers
+
+// const timeoutId = setTimeout(() => window.alert("Hello"), 3000)
+// clearTimeout(timeoutId);
+
+let timeoutId;
+
+function startTimer(){
+    timeoutID = setTimeout(() => window.alert("Hello"), 1000); 
+    console.log("STARTED");
 }
 
-const counter = createCounter();
-
-counter.increment();
-counter.increment();
-counter.increment();
-counter.increment();
-
-console.log(`The current count is: ${counter.getCount()}`);
-console.log(counter);
-
-// Last Ex. Closure for a game ----------------------------
-
-function createGame(){
-    let score = 0;
-
-    function increaseScore(points){
-        score += points;
-        console.log(`+${points} pts.`);
-    }
-    function decreaseScore(points){
-        score -= points;
-        console.log(`-${points} pts.`);
-    }
-    function getScore(){
-        return score;
-    }
-
-    return {increaseScore, decreaseScore, getScore}
+function clearTimer(){
+    clearTimeout(timeoutID);
+    console.log("CLEARED");
 }
-
-
-// THIS IS BAD!! This should be not allowed
-
-const game = createGame();
-
-game.score = 100000000000;
-
-game.increaseScore(5);
-game.increaseScore(6);
-game.decreaseScore(3);
-console.log(`The final score is: ${game.getScore()} pts.`);
-
