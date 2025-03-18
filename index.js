@@ -1,63 +1,60 @@
-// classList = Element property in JavaScript used to interact
-// with an element's list of classes (CSS classes)
-// Allows you to make reusable classes for many elements across
-// your webpage.
+// Rock Paper Scrissors
 
-// add()
-// remove()
-// toggle(remove if present, add if not)
-// replace(oldClass, newClass)
-// contains
+// Option strings
+const choices = ["rock", "paper", "scissors"];
 
-// const myH1 = document.getElementById("myH1");
-// const myButton = document.getElementById("myButton");
+// Displays
+const playerDisplay = document.getElementById("playerDisplay");
+const computerDisplay = document.getElementById("computerDisplay");
+const resultDisplay = document.getElementById("resultDisplay");
+const playerScoreDisplay = document.getElementById("playerScoreDisplay");
+const computerScoreDisplay = document.getElementById("computerScoreDisplay");
 
-// myH1.classList.add("enabled");
-// myButton.classList.add("enabled");
+let playerScore = 0;
+let computerScore = 0;
 
-// myButton.addEventListener("mouseover", event =>{
-//     event.target.classList.toggle("hover");
-// })
-// myButton.addEventListener("mouseout", event =>{
-//     event.target.classList.toggle("hover");
-// })
-// myButton.addEventListener("click", event =>{
+function playGame(playerChoice){
+    // Generating a random number to select from choice arary
+    const computerChoise = choices[Math.floor(Math.random() * 3)];
+    let result = "";
 
-//     if(event.target.classList.contains("disabled")){
-//         event.target.textContent += "👍";
-//     }else{
-//         event.target.classList.replace("enabled","disabled");
-//     }
-
-// })
-// myH1.addEventListener("click", event =>{
-
-//     if(event.target.classList.contains("disabled")){
-//         event.target.textContent += "👍";
-//     }else{
-//         event.target.classList.replace("enabled","disabled");
-//     }
-
-// })
-
-// Challenge!
-
-let buttons = document.querySelectorAll(".myButtons");
-buttons.forEach(button => {
-   button.classList.add("enabled"); 
-})
-buttons.forEach(button => {
-   button.addEventListener("mouseover", event =>{
-        event.target.classList.toggle("hover");
-   })
-   button.addEventListener("mouseout", event =>{
-        event.target.classList.toggle("hover");
-   })
-   button.addEventListener("click", event =>{
-       if(event.target.classList.contains("disabled")){
-           event.target.textContent = "DISABLED"
-        }else{
-            event.target.classList.replace("enabled","disabled");
+    if(playerChoice === computerChoise){
+        result = "IT'S A TIE!"
+    }
+    else{
+        switch(playerChoice){
+            case "rock":
+                result = (computerChoise === "scissors") ? "YOU WON!" : "YOU LOST!";
+                break;
+            case "paper":
+                result = (computerChoise === "rock") ? "YOU WON!" : "YOU LOST!";
+                break;
+            case "scissors":
+                result = (computerChoise === "paper") ? "YOU WON!" : "YOU LOST!";
+                break;
         }
-   })
-})
+    }
+
+    playerDisplay.textContent = `PLAYER: ${playerChoice.toUpperCase()}`;
+    computerDisplay.textContent = `COMPUTER: ${computerChoise.toUpperCase()}`;
+
+    resultDisplay.textContent = result;
+
+    resultDisplay.classList.remove("won", "lost");
+
+    switch(result){
+        case "YOU WON!":
+            resultDisplay.classList.add("won");
+            playerScore++;
+            playerScoreDisplay.textContent = playerScore;
+            break;
+        case "YOU LOST!":
+            resultDisplay.classList.add("lost");
+            computerScore++;
+            computerScoreDisplay.textContent = computerScore;
+            break;
+    }
+
+    console.log(`Computer choice: ${computerChoise}`);
+    console.log(`Your choice: ${playerChoice}`);
+}
