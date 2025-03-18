@@ -1,90 +1,56 @@
-// Async / Await
+// JSON = (JavaScript Object Notation)
+// Data interchange format used for exchanging data between a
+// server and a web application.
 
-// Async = makes a function return a promise
-// Await = makes an async function wait for a promise
+// JSON files {key:value} or [value1, value2, value3]
+// JSON.stringify() = converts a JS object to a JSON string.
+// JSON.parse() = converts a JSON string to a JS object.
 
-// Allows you to write asynchronous code in a synchronous manner
-// Async does not have resolve or reject parameters
-// Everyting after Await is placed in an event queue
 
-// Async keyword before function does not really work without await
-// With async await we dont have to use .then() statements
-
-function walkDog(){
-    return new Promise((resolve, reject) =>{
-        setTimeout(() =>{
-
-            const dogIsWalked = false;
-
-            if(dogIsWalked){
-                resolve(`You walked the dog🐕`);
-            }
-            else{
-                reject(`You did not walked the dog!`);
-            }
-
-        },1500);
-    });
+// Stringifing
+const names = ["Spongebob", "Patrick", "Squidward", "Sandy"];
+const person = {
+    "name":"Spongebob",
+    "age": 30,
+    "isEmployed": true,
+    "hobbies": ["Jellyfishing", "Karate", "Cooking"]
 }
 
-function cleanKitchen(){
-    return new Promise((resolve, reject) =>{
-        setTimeout(() =>{
+// console.log(names);
 
-            const kitchenIsCleaned = true;
+const jsonString = JSON.stringify(names);
 
-            if(kitchenIsCleaned){
-                resolve(`You cleaned the kitchen🔪`);
-            }
-            else{
-                reject(`You did not clean the kitchen!`);
-            }
-        },2500);
-    });
-}
+// console.log(jsonString);
 
-function takeOutTrash(){
-    return new Promise((resolve,reject) => {
-        setTimeout(() =>{
+// console.log(person);
 
-            const trashTakenOut = true;
+const jsonPersonString = JSON.stringify(person);
 
-            if(trashTakenOut){
-                resolve(`You took out the trash🗑️`);
-            }
-            else{
-                reject(`You did not take out the trash!`);
-            }
+// console.log(jsonPersonString);
 
-        },500);
-    });
-}
+// Parsing
+const namesString = `["Spongebob", "Patrick", "Squidward", "Sandy"]`;
+const personString = `{
+    "name":"Spongebob",
+    "age": 30,
+    "isEmployed": true,
+    "hobbies": ["Jellyfishing", "Karate", "Cooking"]
+}`;
 
-// Insted of this
-// walkDog().then(value => {console.log(value); return cleanKitchen()})
-//          .then(value => {console.log(value); return takeOutTrash()})
-//          .then(value => {console.log(value); console.log("Finish!")})
-//          .catch(error => console.error(error));
+// console.log(namesString)
+const pasredData = JSON.parse(namesString);
+// console.log(pasredData)
 
-// We use this
-async function doChores(){
+// Fetching a JSON file.
 
-    try{
-        const walkDogResult = await walkDog();
-        console.log(walkDogResult);
+fetch("./people.json")
+    .then(response => response.json())
+    .then(value => console.log(value));
 
-        const cleanKitchenResult = await cleanKitchen();
-        console.log(cleanKitchenResult);
-
-        const takeOutTrashResult = await takeOutTrash();
-        console.log(cleanKitchenResult);
-
-        console.log("All chores are finished");
-    }
-    catch(error){
-        console.error(error);
-    }
-
-}
-
-doChores();
+// Iterating through
+    fetch("./people.json")
+    .then(response => response.json())
+    .then(values => values.forEach(value => {
+        console.log(value.name)
+    }))
+    .catch(error => console.error);
