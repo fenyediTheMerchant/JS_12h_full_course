@@ -1,42 +1,41 @@
-// 69. Image Slider
+// Callback Hell = Situation in JavaScript where callbacks
+// are nested within other callback to the degree where the
+// code is difficult to read.
 
-const slides = document.querySelectorAll(".slide");
-let slideIndex = 0;
-let intervalId = null;
+// Old pattern to handle asynchronous functions.
+// Use Promises + async / await to avoid Callback Hell
 
-// Wait for the dom content to load, after call init..
-document.addEventListener("DOMContentLoaded", initializeSlider());
-
-function initializeSlider(){
-
-    if(slides.length > 0){
-        slides[slideIndex].classList.add("displaySlide");
-        intervalId = setInterval(nextSlide, 5000);
-    }
+function task1(callback){
+    setTimeout(() => {
+        console.log("Task 1 Complete");
+        callback();
+    }, 2000);
 }
-function showSlide(index){
+function task2(callback){
+    setTimeout(() => {
+        console.log("Task 2 Complete");
+        callback();
+    }, 1000);
+}
+function task3(callback){
+    setTimeout(() => {
+        console.log("Task 3 Complete");
+        callback();
+    }, 3000);
+}
+function task4(callback){
+    setTimeout(() => {
+        console.log("Task 4 Complete");
+        callback();
+    }, 1500);
+}
 
-    if(index >= slides.length){
-        slideIndex = 0;
-    }
-    else if(index < 0){
-        slideIndex = slides.length -1;
-    }
-
-    console.log(`Inner: ${slideIndex}`);
-    slides.forEach(slide => {
-        slide.classList.remove("displaySlide");
-    })
-    slides[slideIndex].classList.add("displaySlide");
-}
-function prevSlide(){
-    clearInterval(intervalId);
-    slideIndex--;
-    showSlide(slideIndex);
-    
-}
-function nextSlide(){
-    console.log(`Outer: ${slideIndex}`);
-    slideIndex++;
-    showSlide(slideIndex);
-}
+task1(() => {
+    task2(() => {
+        task3(() => {
+            task4(() =>{
+                console.log("All tasks completed!");
+            })
+        })
+    });
+});
