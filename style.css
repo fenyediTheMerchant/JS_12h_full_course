@@ -2,6 +2,19 @@
     font-size: 4rem;
     margin: 10px;
     border-radius: 5px;
-    padding: 10px 15px;
-    color: white;
+    padding: 10px, 15px;
+}
+
+.enabled{
+    background-color: hsl(240, 100%, 65%);
+    color:black;
+}
+
+.hover{
+    box-shadow: 0 0 10px red;
+    font-weight: bold;
+}
+
+.disabled{
+    background-color: hsl(0, 0%, 60%);
 }
