@@ -1,50 +1,106 @@
-// fetch = Function used for making HTTP requests to fetch resources.
-// (JSON style data, images, files)
+// WEATHER APP
 
-// Simplifies asynchronous data fetching in JavaSciprt and
-// used for interacting with APIs to retrieve and send data 
-// asynchronously over the web.
+const weatherForm = document.querySelector(".weatherForm");
+const cityInput = document.querySelector(".cityInput");
+const card = document.querySelector(".card");
 
-// fetch(url, {options}) options: default is GET
-// fetch is promised based, resolve or reject
+const apiKey = "***REMOVED***";
 
-fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
-    .then(response => {
-        if(!response.ok){
-            throw new Error("Could not fetch resource");
+weatherForm.addEventListener("submit", async event =>{
+
+    event.preventDefault();
+
+    const city = cityInput.value;
+
+    if(city){
+        try{
+            const weatherData = await getWeatherData(city);
+            displayWeatherInfo(weatherData);
         }
-        return response.json()
-    })
-    .then(data => console.log(data.id))
-    .catch(error => console.error(error));
-    
-// Using async await
-    
-// fetchData();
-
-async function fetchData(){
-    
-    try{
-
-        const pokemonName = document.getElementById("pokemonName").value.toLowerCase();
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
-        const resultName = document.getElementById("resultName");
-        const imgElement = document.getElementById("pokemonSprite");
-        
-        if(!response.ok){
-            throw new Error("Could not fetch resource");
+        catch(error){
+            console.error(error);
         }
-        
-        const data = await response.json()
-        const pokemonSprite = data.sprites.front_default;
-        resultName.textContent = `Your selected pokemon is: ${data.name.toUpperCase()}`;
-        
-        imgElement.src = pokemonSprite;
-        imgElement.style.display = "block";
+    }
+    else{
+        displayError("Please enter a city!");
+    }
+});
 
-        console.log(data);
+async function getWeatherData(city){
+
+    const apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
+    const response = await fetch(apiURL);
+    if (!response.ok){
+        throw new Error("Could not fetch weather data!");
     }
-    catch(error){
-        console.error(error);
+
+    return await response.json();
+}
+
+function displayWeatherInfo(data){
+    console.log(data);
+
+    const {name: city, 
+           main: {temp, humidity}, 
+           weather: [{description, id}]} = data;
+
+    card.textContent = "";
+    card.style.display = "flex";
+
+    const cityDisplay = document.createElement("h1");
+    const tempDisplay = document.createElement("p");
+    const humidityDisplay = document.createElement("p");
+    const descDisplay = document.createElement("p");
+    const weatherEmoji = document.createElement("p");
+
+    cityDisplay.textContent = city;
+    tempDisplay.textContent = `${(temp - 273.15).toFixed(1)}°C`;
+    humidityDisplay.textContent = `Humidity: ${humidity} %`;
+    descDisplay.textContent = `${description}`;
+    weatherEmoji.textContent = getWeatherEmoji(id);
+
+    cityDisplay.classList.add("cityDisplay");
+    tempDisplay.classList.add("tempDisplay");
+    humidityDisplay.classList.add("humidityDisplay");
+    descDisplay.classList.add("descDisplay");
+    weatherEmoji.classList.add("weatherEmoji");
+    
+    card.appendChild(cityDisplay);
+    card.appendChild(tempDisplay);
+    card.appendChild(humidityDisplay);
+    card.appendChild(descDisplay);
+    card.appendChild(weatherEmoji);
+}
+
+function getWeatherEmoji(weatherId){
+    
+    switch(true){
+        case (weatherId >= 200 && weatherId < 300):
+            return "⛈️";
+        case (weatherId >= 300 && weatherId < 400):
+            return "🌧️";
+        case (weatherId >= 500 && weatherId < 600):
+            return "🌦️";
+        case (weatherId >= 600 && weatherId < 700):
+            return "❄️";
+        case (weatherId >= 700 && weatherId < 800):
+            return "🌫️";
+        case (weatherId === 800):
+            return "☀️";
+        case (weatherId >= 801 && weatherId < 810):
+            return "☁️";
+        default:
+            return "🤔";
     }
+}
+
+function displayError(message){
+
+    const errorDisplay = document.createElement("p");
+    errorDisplay.textContent = message;
+    errorDisplay.classList.add("errorDisplay");
+
+    card.textContent = "";
+    card.style.display = "flex";
+    card.appendChild(errorDisplay);
 }
