@@ -1,3 +1,7 @@
-img{
-    max-width: 500px;
+.myButtons{
+    font-size: 4rem;
+    margin: 10px;
+    border-radius: 5px;
+    padding: 10px 15px;
+    color: white;
 }
