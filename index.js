@@ -1,60 +1,42 @@
-// Rock Paper Scrissors
+// 69. Image Slider
 
-// Option strings
-const choices = ["rock", "paper", "scissors"];
+const slides = document.querySelectorAll(".slide");
+let slideIndex = 0;
+let intervalId = null;
 
-// Displays
-const playerDisplay = document.getElementById("playerDisplay");
-const computerDisplay = document.getElementById("computerDisplay");
-const resultDisplay = document.getElementById("resultDisplay");
-const playerScoreDisplay = document.getElementById("playerScoreDisplay");
-const computerScoreDisplay = document.getElementById("computerScoreDisplay");
+// Wait for the dom content to load, after call init..
+document.addEventListener("DOMContentLoaded", initializeSlider());
 
-let playerScore = 0;
-let computerScore = 0;
+function initializeSlider(){
 
-function playGame(playerChoice){
-    // Generating a random number to select from choice arary
-    const computerChoise = choices[Math.floor(Math.random() * 3)];
-    let result = "";
-
-    if(playerChoice === computerChoise){
-        result = "IT'S A TIE!"
+    if(slides.length > 0){
+        slides[slideIndex].classList.add("displaySlide");
+        intervalId = setInterval(nextSlide, 5000);
     }
-    else{
-        switch(playerChoice){
-            case "rock":
-                result = (computerChoise === "scissors") ? "YOU WON!" : "YOU LOST!";
-                break;
-            case "paper":
-                result = (computerChoise === "rock") ? "YOU WON!" : "YOU LOST!";
-                break;
-            case "scissors":
-                result = (computerChoise === "paper") ? "YOU WON!" : "YOU LOST!";
-                break;
-        }
+}
+function showSlide(index){
+
+    if(index >= slides.length){
+        slideIndex = 0;
+    }
+    else if(index < 0){
+        slideIndex = slides.length -1;
     }
 
-    playerDisplay.textContent = `PLAYER: ${playerChoice.toUpperCase()}`;
-    computerDisplay.textContent = `COMPUTER: ${computerChoise.toUpperCase()}`;
-
-    resultDisplay.textContent = result;
-
-    resultDisplay.classList.remove("won", "lost");
-
-    switch(result){
-        case "YOU WON!":
-            resultDisplay.classList.add("won");
-            playerScore++;
-            playerScoreDisplay.textContent = playerScore;
-            break;
-        case "YOU LOST!":
-            resultDisplay.classList.add("lost");
-            computerScore++;
-            computerScoreDisplay.textContent = computerScore;
-            break;
-    }
-
-    console.log(`Computer choice: ${computerChoise}`);
-    console.log(`Your choice: ${playerChoice}`);
+    console.log(`Inner: ${slideIndex}`);
+    slides.forEach(slide => {
+        slide.classList.remove("displaySlide");
+    })
+    slides[slideIndex].classList.add("displaySlide");
+}
+function prevSlide(){
+    clearInterval(intervalId);
+    slideIndex--;
+    showSlide(slideIndex);
+    
+}
+function nextSlide(){
+    console.log(`Outer: ${slideIndex}`);
+    slideIndex++;
+    showSlide(slideIndex);
 }

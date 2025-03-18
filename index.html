@@ -8,25 +8,14 @@
 </head>
 <body>
 
-    <h1>Rock - Paper - Scissors</h1>
-
-    <div class="choices">
-        <button onclick="playGame('rock')">🪨</button>
-        <button onclick="playGame('paper')">📃</button>
-        <button onclick="playGame('scissors')">✂️</button>
-    </div>
-    
-    <div id="playerDisplay">PLAYER:</div>
-    <div id="computerDisplay">COMPUTER:</div>
-    <div id="resultDisplay">Dare to try?</div>
-
-    <div class="scoreDisplay">Player Score: 
-        <!-- Span used for styling this tag differently than the parrent -->
-        <span id="playerScoreDisplay">0</span>
-    </div>
-    <div class="scoreDisplay">Computer Score: 
-        <!-- Span used for styling this tag differently than the parrent -->
-        <span id="computerScoreDisplay">0</span>
+    <div class="slider">
+        <div class="slides">
+            <img src="./car1.jpg" alt="" class="slide">
+            <img src="./car2.jpg" alt="" class="slide">
+            <img src="./car3.jpg" alt="" class="slide">
+        </div>
+        <button id="prev" onclick="prevSlide()">&#10094</button>
+        <button id="next" onclick="nextSlide()">&#10095</button>
     </div>
 
     <script src="./index.js"></script>
