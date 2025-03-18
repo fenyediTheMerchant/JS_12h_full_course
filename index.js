@@ -1,56 +1,50 @@
-// JSON = (JavaScript Object Notation)
-// Data interchange format used for exchanging data between a
-// server and a web application.
+// fetch = Function used for making HTTP requests to fetch resources.
+// (JSON style data, images, files)
 
-// JSON files {key:value} or [value1, value2, value3]
-// JSON.stringify() = converts a JS object to a JSON string.
-// JSON.parse() = converts a JSON string to a JS object.
+// Simplifies asynchronous data fetching in JavaSciprt and
+// used for interacting with APIs to retrieve and send data 
+// asynchronously over the web.
 
+// fetch(url, {options}) options: default is GET
+// fetch is promised based, resolve or reject
 
-// Stringifing
-const names = ["Spongebob", "Patrick", "Squidward", "Sandy"];
-const person = {
-    "name":"Spongebob",
-    "age": 30,
-    "isEmployed": true,
-    "hobbies": ["Jellyfishing", "Karate", "Cooking"]
+fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
+    .then(response => {
+        if(!response.ok){
+            throw new Error("Could not fetch resource");
+        }
+        return response.json()
+    })
+    .then(data => console.log(data.id))
+    .catch(error => console.error(error));
+    
+// Using async await
+    
+// fetchData();
+
+async function fetchData(){
+    
+    try{
+
+        const pokemonName = document.getElementById("pokemonName").value.toLowerCase();
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
+        const resultName = document.getElementById("resultName");
+        const imgElement = document.getElementById("pokemonSprite");
+        
+        if(!response.ok){
+            throw new Error("Could not fetch resource");
+        }
+        
+        const data = await response.json()
+        const pokemonSprite = data.sprites.front_default;
+        resultName.textContent = `Your selected pokemon is: ${data.name.toUpperCase()}`;
+        
+        imgElement.src = pokemonSprite;
+        imgElement.style.display = "block";
+
+        console.log(data);
+    }
+    catch(error){
+        console.error(error);
+    }
 }
-
-// console.log(names);
-
-const jsonString = JSON.stringify(names);
-
-// console.log(jsonString);
-
-// console.log(person);
-
-const jsonPersonString = JSON.stringify(person);
-
-// console.log(jsonPersonString);
-
-// Parsing
-const namesString = `["Spongebob", "Patrick", "Squidward", "Sandy"]`;
-const personString = `{
-    "name":"Spongebob",
-    "age": 30,
-    "isEmployed": true,
-    "hobbies": ["Jellyfishing", "Karate", "Cooking"]
-}`;
-
-// console.log(namesString)
-const pasredData = JSON.parse(namesString);
-// console.log(pasredData)
-
-// Fetching a JSON file.
-
-fetch("./people.json")
-    .then(response => response.json())
-    .then(value => console.log(value));
-
-// Iterating through
-    fetch("./people.json")
-    .then(response => response.json())
-    .then(values => values.forEach(value => {
-        console.log(value.name)
-    }))
-    .catch(error => console.error);
