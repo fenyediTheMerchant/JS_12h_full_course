@@ -1,46 +1,14 @@
-// Promise = An Object that manages asynchronous operations.
-// Wrap a Promise Object around {asynchronous code}
-// "I promise to return a value"
-// PENDING -> RESOLVED or REJECTED
+// Async / Await
 
-// new Promise((resolve, reject) => {asynchronous code})
+// Async = makes a function return a promise
+// Await = makes an async function wait for a promise
 
-// DO THESE CHORES IN ORDER
-// 1. Walk the dog
-// 2. Clean the kitchen
-// 3. Take out the trash
+// Allows you to write asynchronous code in a synchronous manner
+// Async does not have resolve or reject parameters
+// Everyting after Await is placed in an event queue
 
-// With callback hell
-// function walkDog(callback){
-//     setTimeout(() =>{
-//         console.log(`You walked the dog🐕`);
-//         callback();
-//     },1500)
-// }
-
-// function cleanKitchen(callback){
-//     setTimeout(() =>{
-//         console.log(`You cleaned the kitchen🔪`);
-//         callback();
-//     },2500)
-// }
-
-// function takeOutTrash(callback){
-//     setTimeout(() =>{
-//         console.log(`You took out the trash🗑️`);
-//         callback()
-//     },500)
-// }
-
-// walkDog(() => {
-//     cleanKitchen(() => {
-//         takeOutTrash(() => console.log("You finished all the chores"))
-//     })
-// });
-
-// We can use promises instead, we method chain our promises
-// At every function we have to return an object to make promise compatible
-// With Promises
+// Async keyword before function does not really work without await
+// With async await we dont have to use .then() statements
 
 function walkDog(){
     return new Promise((resolve, reject) =>{
@@ -79,7 +47,7 @@ function takeOutTrash(){
     return new Promise((resolve,reject) => {
         setTimeout(() =>{
 
-            const trashTakenOut = false;
+            const trashTakenOut = true;
 
             if(trashTakenOut){
                 resolve(`You took out the trash🗑️`);
@@ -92,23 +60,31 @@ function takeOutTrash(){
     });
 }
 
-walkDog().then(value => {console.log(value); return cleanKitchen()})
-         .then(value => {console.log(value); return takeOutTrash()})
-         .then(value => {console.log(value); console.log("Finish!")})
-         .catch(error => console.error(error));
+// Insted of this
+// walkDog().then(value => {console.log(value); return cleanKitchen()})
+//          .then(value => {console.log(value); return takeOutTrash()})
+//          .then(value => {console.log(value); console.log("Finish!")})
+//          .catch(error => console.error(error));
 
-// Same as
-// walkDog()
-//     .then((fulfilledValue, rejectedValue) => {
-//         console.log(fulfilledValue);
-//         return cleanKitchen();
-//     })
-//     .then((fulfilledValue, rejectedValue) => {
-//         console.log(fulfilledValue);
-//         return takeOutTrash();
-//     })
-//     .then((fulfilledValue, rejectedValue) => {
-//         console.log(fulfilledValue);
-//         console.log("Finish!");
-//     })
-//     .catch(error => console.error(error));
+// We use this
+async function doChores(){
+
+    try{
+        const walkDogResult = await walkDog();
+        console.log(walkDogResult);
+
+        const cleanKitchenResult = await cleanKitchen();
+        console.log(cleanKitchenResult);
+
+        const takeOutTrashResult = await takeOutTrash();
+        console.log(cleanKitchenResult);
+
+        console.log("All chores are finished");
+    }
+    catch(error){
+        console.error(error);
+    }
+
+}
+
+doChores();
